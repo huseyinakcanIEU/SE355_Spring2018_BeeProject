@@ -26,15 +26,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this; //singleton
-
-        //init player base
-        base_P1 = GameObject.FindGameObjectWithTag("BaseP1");
-        base_P2 = GameObject.FindGameObjectWithTag("BaseP2");
     }
 
     #endregion
-
-    public GameObject base_P1;
-    public GameObject base_P2;
 
 }
