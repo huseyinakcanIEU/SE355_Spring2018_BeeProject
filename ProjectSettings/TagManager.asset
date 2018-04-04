@@ -6,6 +6,8 @@ TagManager:
   tags:
   - UIManager
   - Resource
+  - BaseP1
+  - BaseP2
   layers:
   - Default
   - TransparentFX

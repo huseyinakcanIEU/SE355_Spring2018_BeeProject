@@ -1656,6 +1656,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1152665894458366, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
+      propertyPath: m_TagString
+      value: BaseP2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
@@ -1808,6 +1812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a214c3ca9e30fa49b72870aeaae645f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  base_p1: {fileID: 0}
+  base_p2: {fileID: 0}
 --- !u!4 &968324772
 Transform:
   m_ObjectHideFlags: 0
@@ -2224,6 +2230,10 @@ Prefab:
         type: 2}
       propertyPath: _workerBeeNumber
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152665894458366, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
+      propertyPath: m_TagString
+      value: BaseP1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
