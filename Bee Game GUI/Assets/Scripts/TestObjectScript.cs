@@ -24,4 +24,13 @@ public class TestObjectScript : MonoBehaviour
 		GameManager.Instance.OptionButton ();
 	}
 
+	public void OptionDoneButtonCaller()
+	{
+		GameManager.Instance.OptionDoneButton ();
+	}
+
+	public void MusicButtonCaller()
+	{
+		GameManager.Instance.MusicButton ();
+	}
 }

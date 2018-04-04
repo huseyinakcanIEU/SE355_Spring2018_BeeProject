@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject optpanel;
 
+	public AudioSource music;
+
 	private static GameManager _instance;
 
 	public static GameManager Instance 
@@ -42,6 +44,20 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log ("Option Button called");
 		optpanel.gameObject.SetActive (true);
+
+	}
+
+	public void OptionDoneButton()
+	{
+		Debug.Log ("Option Done Button called");
+		optpanel.gameObject.SetActive (false);
+
+	}
+
+	public void MusicButton()
+	{
+		Debug.Log ("Music Button called");
+		music.mute = !music.mute;
 
 	}
 
