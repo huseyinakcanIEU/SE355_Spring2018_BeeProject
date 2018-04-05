@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/BeeGameGUI.unity
-  isLoaded: 1
-  isActive: 1
