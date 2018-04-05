@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour 
+public class GUIManager : MonoBehaviour 
 {
 
 	public GameObject optpanel;
@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
 
     public Text musicText;
 
-	private static GameManager _instance;
+	private static GUIManager _instance;
 
-	public static GameManager Instance 
+	public static GUIManager Instance 
 	{
 
 		get 
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 			if (_instance == null) 
 			{
 				GameObject go = new GameObject ("Game Manager");
-				go.AddComponent<GameManager> ();
+				go.AddComponent<GUIManager> ();
 			}
 
 			return _instance;

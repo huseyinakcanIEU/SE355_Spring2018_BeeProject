@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestObjectScript : MonoBehaviour 
+public class TestCallerScript : MonoBehaviour 
 {
 	void Start()
 	{
@@ -11,26 +11,26 @@ public class TestObjectScript : MonoBehaviour
 
 	public void HostButtonCaller()
 	{
-		GameManager.Instance.HostButton ();
+		GUIManager.Instance.HostButton ();
 	}
 
 	public void JoinButtonCaller()
 	{
-		GameManager.Instance.JoinButton ();
+		GUIManager.Instance.JoinButton ();
 	}
 
 	public void OptionButtonCaller()
 	{
-		GameManager.Instance.OptionButton ();
+		GUIManager.Instance.OptionButton ();
 	}
 
 	public void OptionDoneButtonCaller()
 	{
-		GameManager.Instance.OptionDoneButton ();
+		GUIManager.Instance.OptionDoneButton ();
 	}
 
 	public void MusicButtonCaller()
 	{
-		GameManager.Instance.MusicButton ();
+		GUIManager.Instance.MusicButton ();
 	}
 }
