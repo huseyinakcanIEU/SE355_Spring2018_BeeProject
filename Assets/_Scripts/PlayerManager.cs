@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject base_P1;
     [HideInInspector]
     public GameObject base_P2;
-
+    
     public int resource_P1;
     public int resource_P2;
 

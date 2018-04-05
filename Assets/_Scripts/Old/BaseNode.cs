@@ -6,14 +6,20 @@ public class BaseNode : MonoBehaviour {
     public UIManager _uiManager;
     private Bee _bee;
     public int _health;
-    public int playerResource;
+    
     public int _maxQuota;
-    public int _soldierBeeCost;
-    public int _workerBeeCost;
+    private int soldierBeeCost;
+    private int workerBeeCost;
     private List<GameObject> _resourceList;
 
+    //Arda
+    public int playerResource;
     public string baseOwner;
 
+    private int _soldierBeeResourceCost;
+    private int _workerBeeResourceCost;
+    private int _soldierBeeQuotaCost;
+    private int _workerBeeQuotaCost;
 
     private void Awake()
     {
@@ -29,17 +35,21 @@ public class BaseNode : MonoBehaviour {
         {
             baseOwner = "Player2";
         }
+
+        //set Costs
+        _soldierBeeResourceCost = GameManager.Instance.soldierBeeResourceCost;
+        _workerBeeResourceCost = GameManager.Instance.workerBeeResourceCost;
+        _soldierBeeQuotaCost = GameManager.Instance.soldierBeeQuotaCost;
+        _workerBeeQuotaCost = GameManager.Instance.workerBeeQuotaCost;
+
     }
 
-    // Use this for initialization
     void Start()
     {
-
         //Increasing _honeyStock 5 per second.
         InvokeRepeating("AddHoneyStock", 1, 1);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -47,9 +57,9 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateSoldierBee()
     {
-        if(playerResource>= _soldierBeeCost && _bee.GetQuota() < _maxQuota)
+        if(playerResource>= soldierBeeCost && _bee.GetQuota() < _maxQuota)
         {
-            playerResource -= _soldierBeeCost;
+            playerResource -= soldierBeeCost;
             _bee.SetSoldierBeeNumber(_bee.GetSoldierBeeNumber() + 1);
             _bee.SetQuota(_bee.GetQuota() + 1);
         }
@@ -58,9 +68,9 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateWorkerBee()
     {
-        if (playerResource >= _workerBeeCost && _bee.GetQuota() < _maxQuota)
+        if (playerResource >= workerBeeCost && _bee.GetQuota() < _maxQuota)
         {
-            playerResource -= _workerBeeCost;
+            playerResource -= workerBeeCost;
             _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
             _bee.SetQuota(_bee.GetQuota() + 1);
         }
