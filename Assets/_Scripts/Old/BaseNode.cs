@@ -21,6 +21,9 @@ public class BaseNode : MonoBehaviour {
     //public string baseOwner; //who is the owner of this base
     Player baseOwner;
 
+    public GameObject soldierBeePrefab;
+    public GameObject workerBeePrefab;
+
     private int _soldierBeeResourceCost;
     private int _workerBeeResourceCost;
     private int _soldierBeeQuotaCost;
@@ -84,18 +87,20 @@ public class BaseNode : MonoBehaviour {
             if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota)
             {
                 currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
-                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1;
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
 
+                GameObject tempObj = Instantiate(soldierBeePrefab); // bitmedi ha
+                //instantiate bee here
             }
         }
 
-        if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et
-        {
-            currentBaseResource -= soldierBeeCost;
-            _bee.SetSoldierBeeNumber(_bee.GetSoldierBeeNumber() + 1);
-            _bee.SetQuota(_bee.GetQuota() + 1);
-        }
-        else { Debug.Log("Soldier creation error;");}
+        //if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et
+        //{
+        //    currentBaseResource -= soldierBeeCost;
+        //    _bee.SetSoldierBeeNumber(_bee.GetSoldierBeeNumber() + 1);
+        //    _bee.SetQuota(_bee.GetQuota() + 1);
+        //}
+        //else { Debug.Log("Soldier creation error;");}
     }
 
     public void CreateWorkerBee()
@@ -110,6 +115,12 @@ public class BaseNode : MonoBehaviour {
 
     }
 
+    private void InstatiateBee(GameObject beePrefab)
+    {
+
+    }
+
+    //standart resource gathering without using resource node
     private void AddHoneyStock()
     {
         Debug.Log("Adding honey stock:" + currentBaseResource);

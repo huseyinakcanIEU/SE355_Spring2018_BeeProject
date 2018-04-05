@@ -10,6 +10,10 @@ TagManager:
   - BaseP2
   - ControlNode
   - ResourceNode
+  - BeeSpawnPosP1
+  - BeeSpawnPosP2
+  - BeePoolPlayer1
+  - BeePoolPlayer2
   layers:
   - Default
   - TransparentFX
