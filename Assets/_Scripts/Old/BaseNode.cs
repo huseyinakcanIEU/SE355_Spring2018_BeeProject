@@ -31,6 +31,8 @@ public class BaseNode : MonoBehaviour {
 
     private int _maxBeeQuota;
 
+    private List<Transform> spawnPositions; //bee spawn positions
+
     enum Player
     {
         P1,
@@ -64,7 +66,16 @@ public class BaseNode : MonoBehaviour {
         //set max bee quota
         _maxBeeQuota = GameManager.Instance.maxBeeQuota;
 
-        
+        //add all spawn pos transforms to spawnPos list
+        var tempChildren = gameObject.GetComponentsInChildren<Transform>();
+        foreach (var child in tempChildren)
+        {
+            if (child.CompareTag("BaseSpawnPos") == true)
+            {
+                spawnPositions.Add(child);
+            }
+        }
+
 
     }
 
@@ -89,7 +100,7 @@ public class BaseNode : MonoBehaviour {
                 currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
 
-                GameObject tempObj = Instantiate(soldierBeePrefab); // bitmedi ha
+                //GameObject tempObj = Instantiate(soldierBeePrefab,playerManager.beePool_P1.transform,); // bitmedi ha
                 //instantiate bee here
             }
         }
