@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
 	public AudioSource music;
 
+    public Text musicText;
+
 	private static GameManager _instance;
 
 	public static GameManager Instance 
@@ -58,6 +60,14 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log ("Music Button called");
 		music.mute = !music.mute;
+        if(music.mute)
+        {
+            musicText.text = "Music: Off";
+        }
+        else
+        {
+            musicText.text = "Music: On";
+        }
 
 	}
 
