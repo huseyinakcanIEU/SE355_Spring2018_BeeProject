@@ -17,8 +17,9 @@ public class BaseNode : MonoBehaviour {
     //Arda
     private PlayerManager playerManager; //player manager class ref
 
-    public int playerResource; //how many resource this base have
-    public string baseOwner; //who is the owner of this base
+    public int currentBaseResource; //how many resource this base have
+    //public string baseOwner; //who is the owner of this base
+    Player baseOwner;
 
     private int _soldierBeeResourceCost;
     private int _workerBeeResourceCost;
@@ -26,6 +27,12 @@ public class BaseNode : MonoBehaviour {
     private int _workerBeeQuotaCost;
 
     private int _maxBeeQuota;
+
+    enum Player
+    {
+        P1,
+        P2,
+    }
 
     private void Awake()
     {
@@ -38,11 +45,11 @@ public class BaseNode : MonoBehaviour {
         //set base owner
         if (playerManager.base_P1 == this.gameObject)
         {
-            baseOwner = "Player1";
+            baseOwner = Player.P1;
         }
         else if (playerManager.base_P2 == this.gameObject)
         {
-            baseOwner = "Player2";
+            baseOwner = Player.P2;
         }
 
         //set Costs
@@ -71,9 +78,20 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateSoldierBee()
     {
-        if (playerResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et
+
+        if (baseOwner == Player.P1)
         {
-            playerResource -= soldierBeeCost;
+            if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota)
+            {
+                currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1;
+
+            }
+        }
+
+        if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et
+        {
+            currentBaseResource -= soldierBeeCost;
             _bee.SetSoldierBeeNumber(_bee.GetSoldierBeeNumber() + 1);
             _bee.SetQuota(_bee.GetQuota() + 1);
         }
@@ -82,9 +100,9 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateWorkerBee()
     {
-        if (playerResource >= workerBeeCost && _bee.GetQuota() < maxQuota)
+        if (currentBaseResource >= workerBeeCost && _bee.GetQuota() < maxQuota)
         {
-            playerResource -= workerBeeCost;
+            currentBaseResource -= workerBeeCost;
             _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
             _bee.SetQuota(_bee.GetQuota() + 1);
         }
@@ -94,8 +112,8 @@ public class BaseNode : MonoBehaviour {
 
     private void AddHoneyStock()
     {
-        Debug.Log("Adding honey stock:" + playerResource);
-        playerResource += 5;
+        Debug.Log("Adding honey stock:" + currentBaseResource);
+        currentBaseResource += 5;
     }
 
     //Need to now who has how many bees in a particular resource.
