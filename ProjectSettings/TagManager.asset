@@ -8,6 +8,8 @@ TagManager:
   - Resource
   - BaseP1
   - BaseP2
+  - ControlNode
+  - ResourceNode
   layers:
   - Default
   - TransparentFX
