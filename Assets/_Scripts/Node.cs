@@ -5,6 +5,7 @@ using UnityEngine;
 //Eksik Ozellikler->
 //-->>kontrol noktalarinda orumcek mi kus mu ne sakat bir sey varmis
 //-->>isci ari resource node'a, soldier ari ise sadece controlNodelara gidebilirmis
+//-->>oyunucun ari buradaysa (worker yani) kaynak uretim baz miktari arttir.(buff gibi) (aslinda isciler base'e git gel yaptikca daha mantikli olur,  varsa gonullu yapsin)
 
 
 public class Node : MonoBehaviour

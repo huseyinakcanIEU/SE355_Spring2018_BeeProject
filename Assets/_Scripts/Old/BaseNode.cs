@@ -128,7 +128,7 @@ public class BaseNode : MonoBehaviour {
         }
         else
         {
-            Debug.LogWarning("Player settings may wrong. Check P1 and P2 settings or mailto: ardazeytin@outlook.com");
+            Debug.LogWarning("Player settings may wrong. Check P1 and P2 settings or mailto: ardazeytin@outlook.com or Call 911");
         }
 
     }

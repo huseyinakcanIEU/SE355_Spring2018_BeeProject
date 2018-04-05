@@ -32,11 +32,6 @@ public class PlayerManager : MonoBehaviour
         beePool_P2 = GameObject.FindGameObjectWithTag("BeePoolPlayer2");
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         UpdatePlayerResourceValues();
