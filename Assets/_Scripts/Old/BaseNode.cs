@@ -7,31 +7,40 @@ public class BaseNode : MonoBehaviour {
     private Bee _bee;
     public int _health;
     
-    public int _maxQuota;
+    public int maxQuota;
     private int soldierBeeCost;
     private int workerBeeCost;
     private List<GameObject> _resourceList;
 
+
+
     //Arda
-    public int playerResource;
-    public string baseOwner;
+    private PlayerManager playerManager; //player manager class ref
+
+    public int playerResource; //how many resource this base have
+    public string baseOwner; //who is the owner of this base
 
     private int _soldierBeeResourceCost;
     private int _workerBeeResourceCost;
     private int _soldierBeeQuotaCost;
     private int _workerBeeQuotaCost;
 
+    private int _maxBeeQuota;
+
     private void Awake()
     {
         _bee = GetComponent<Bee>();
         _uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
+        //set player manager ref
+        playerManager = GameManager.Instance.GetComponent<PlayerManager>();
+
         //set base owner
-        if (GameManager.Instance.GetComponent<PlayerManager>().base_P1 == this.gameObject)
+        if (playerManager.base_P1 == this.gameObject)
         {
             baseOwner = "Player1";
         }
-        else if (GameManager.Instance.GetComponent<PlayerManager>().base_P2 == this.gameObject)
+        else if (playerManager.base_P2 == this.gameObject)
         {
             baseOwner = "Player2";
         }
@@ -41,6 +50,11 @@ public class BaseNode : MonoBehaviour {
         _workerBeeResourceCost = GameManager.Instance.workerBeeResourceCost;
         _soldierBeeQuotaCost = GameManager.Instance.soldierBeeQuotaCost;
         _workerBeeQuotaCost = GameManager.Instance.workerBeeQuotaCost;
+
+        //set max bee quota
+        _maxBeeQuota = GameManager.Instance.maxBeeQuota;
+
+        
 
     }
 
@@ -57,7 +71,7 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateSoldierBee()
     {
-        if(playerResource>= soldierBeeCost && _bee.GetQuota() < _maxQuota)
+        if (playerResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et
         {
             playerResource -= soldierBeeCost;
             _bee.SetSoldierBeeNumber(_bee.GetSoldierBeeNumber() + 1);
@@ -68,7 +82,7 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateWorkerBee()
     {
-        if (playerResource >= workerBeeCost && _bee.GetQuota() < _maxQuota)
+        if (playerResource >= workerBeeCost && _bee.GetQuota() < maxQuota)
         {
             playerResource -= workerBeeCost;
             _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);

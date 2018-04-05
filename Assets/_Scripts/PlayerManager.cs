@@ -9,8 +9,13 @@ public class PlayerManager : MonoBehaviour
     [HideInInspector]
     public GameObject base_P2;
     
+    //How many resources players have
     public int resource_P1;
     public int resource_P2;
+
+    //How many bees players have
+    public int concurrentBee_P1;
+    public int concurrentBee_P2;
 
     private void Awake()
     {

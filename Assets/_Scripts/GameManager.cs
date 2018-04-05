@@ -37,4 +37,6 @@ public class GameManager : MonoBehaviour
     public int soldierBeeQuotaCost;
     public int workerBeeQuotaCost;
 
+    public int maxBeeQuota;
+
 }
