@@ -31,7 +31,7 @@ public class BaseNode : MonoBehaviour {
 
     private int _maxBeeQuota;
 
-    private List<Transform> spawnPositions; //bee spawn positions
+    private List<Transform> spawnPositions = new List<Transform>(); //bee spawn positions (you cant create empty transform! use vector3)
 
     enum Player
     {
@@ -66,15 +66,7 @@ public class BaseNode : MonoBehaviour {
         //set max bee quota
         _maxBeeQuota = GameManager.Instance.maxBeeQuota;
 
-        //add all spawn pos transforms to spawnPos list
-        var tempChildren = gameObject.GetComponentsInChildren<Transform>();
-        foreach (var child in tempChildren)
-        {
-            if (child.CompareTag("BaseSpawnPos") == true)
-            {
-                spawnPositions.Add(child);
-            }
-        }
+        
 
 
     }
@@ -83,6 +75,19 @@ public class BaseNode : MonoBehaviour {
     {
         //Increasing _honeyStock 5 per second.
         InvokeRepeating("AddHoneyStock", 1, 1);
+
+        //add all spawn pos transforms to spawnPos list
+        //var tempChildren = gameObject.GetComponentsInChildren<Vector3>();
+
+        var tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
+        //tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
+        foreach (var child in tempTransformOfChildren)
+        {
+            if (child.CompareTag("BeeSpawnPos") == true)
+            {
+                spawnPositions.Add(child);
+            }
+        }
     }
 
     void Update()
@@ -92,17 +97,43 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateSoldierBee()
     {
-
+        
         if (baseOwner == Player.P1)
         {
-            if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota)
+            
+            if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < _maxBeeQuota)
             {
                 currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
 
-                //GameObject tempObj = Instantiate(soldierBeePrefab,playerManager.beePool_P1.transform,); // bitmedi ha
-                //instantiate bee here
+                GameObject tempObj = Instantiate(soldierBeePrefab,spawnPositions[0].position,Quaternion.identity); //instantiate a bee from base player 1
+                tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+                //Debug.Log("WALLLLLDOOOOOOOO!!");
             }
+            else
+            {
+                Debug.Log("CantCreateSoldier P1-> " + "CurrRes=" + currentBaseResource + ">" + "soldierCost= " + _soldierBeeResourceCost + "&&" + " " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+            }
+        }
+        else if (baseOwner == Player.P2)
+        {
+            if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P2 < _maxBeeQuota)
+            {
+                currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P2 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
+
+                GameObject tempObj = Instantiate(soldierBeePrefab, spawnPositions[0].position, Quaternion.identity); //instantiate a bee from base player 1
+                tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+                //Debug.Log("WALLLLLDOOOOOOOO!!");
+            }
+            else
+            {
+                Debug.Log("CantCreateSoldier P2-> " + "CurrRes=" + currentBaseResource + ">" + "soldierCost= " + _soldierBeeResourceCost + " && " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player settings may wrong. Check P1 and P2 settings or mailto: ardazeytin@outlook.com");
         }
 
         //if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et

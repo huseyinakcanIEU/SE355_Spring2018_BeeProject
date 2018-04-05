@@ -1523,7 +1523,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1835479881}
-        m_MethodName: createSoldierBee
+        m_MethodName: CreateSoldierBee
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   workerBeeResourceCost: 6
   soldierBeeQuotaCost: 2
   workerBeeQuotaCost: 1
-  maxBeeQuota: 0
+  maxBeeQuota: 100
 --- !u!4 &968324772
 Transform:
   m_ObjectHideFlags: 0
@@ -2319,6 +2319,18 @@ Prefab:
       propertyPath: m_TagString
       value: BaseP1
       objectReference: {fileID: 0}
+    - target: {fileID: 114304210653937680, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+        type: 2}
+      propertyPath: soldierBeePrefab
+      value: 
+      objectReference: {fileID: 1243973270604106, guid: 52a6bfeadc33ac445862cfd570c01b4c,
+        type: 2}
+    - target: {fileID: 114304210653937680, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed,
+        type: 2}
+      propertyPath: workerBeePrefab
+      value: 
+      objectReference: {fileID: 1493148751270236, guid: 6bc881003140f2445a03b0f306beacca,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
