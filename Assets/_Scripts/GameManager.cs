@@ -30,4 +30,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    public int soldierBeeCost;
+    public int workerBeeCost;
 }
