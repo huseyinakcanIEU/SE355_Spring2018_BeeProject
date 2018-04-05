@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class BaseNode : MonoBehaviour {
     public UIManager _uiManager;
-    private Bee _bee;
-    public int _health;
+    //private Bee _bee;
+    public int _health; //kralice ari icin gecici sanirim(test)
     
-    public int maxQuota;
-    private int soldierBeeCost;
-    private int workerBeeCost;
+    //public int maxQuota;
+    //private int soldierBeeCost;
+    //private int workerBeeCost;
     private List<GameObject> _resourceList;
 
 
+    //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
-    //Arda
     private PlayerManager playerManager; //player manager class ref
 
     public int currentBaseResource; //how many resource this base have
-    //public string baseOwner; //who is the owner of this base
-    Player baseOwner;
+    Player baseOwner; //enum P1 P2
 
+    //bee prefabs
     public GameObject soldierBeePrefab;
     public GameObject workerBeePrefab;
 
+    //costs and quotas
     private int _soldierBeeResourceCost;
     private int _workerBeeResourceCost;
     private int _soldierBeeQuotaCost;
     private int _workerBeeQuotaCost;
-
     private int _maxBeeQuota;
 
     private List<Transform> spawnPositions = new List<Transform>(); //bee spawn positions (you cant create empty transform! use vector3)
@@ -41,7 +41,7 @@ public class BaseNode : MonoBehaviour {
 
     private void Awake()
     {
-        _bee = GetComponent<Bee>();
+        //_bee = GetComponent<Bee>();
         _uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
 
         //set player manager ref
@@ -66,9 +66,6 @@ public class BaseNode : MonoBehaviour {
         //set max bee quota
         _maxBeeQuota = GameManager.Instance.maxBeeQuota;
 
-        
-
-
     }
 
     void Start()
@@ -77,10 +74,7 @@ public class BaseNode : MonoBehaviour {
         InvokeRepeating("AddHoneyStock", 1, 1);
 
         //add all spawn pos transforms to spawnPos list
-        //var tempChildren = gameObject.GetComponentsInChildren<Vector3>();
-
         var tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
-        //tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
         foreach (var child in tempTransformOfChildren)
         {
             if (child.CompareTag("BeeSpawnPos") == true)
@@ -92,7 +86,7 @@ public class BaseNode : MonoBehaviour {
 
     void Update()
     {
-
+        //update iste falan fistik
     }
 
     public void CreateSoldierBee()
@@ -141,18 +135,11 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateWorkerBee()
     {
-        //if (currentBaseResource >= workerBeeCost && _bee.GetQuota() < maxQuota)
-        //{
-        //    currentBaseResource -= workerBeeCost;
-        //    _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
-        //    _bee.SetQuota(_bee.GetQuota() + 1);
-        //}
-        //else { Debug.Log("Worker creation error;"); }
-
+        //asker ari fonk. bakarak doldur
     }
 
 
-    //standart resource gathering without using resource node
+    //standart resource gathering without using resource additional nodes
     private void AddHoneyStock()
     {
         Debug.Log("Base " + baseOwner +" resource= "+ currentBaseResource);
