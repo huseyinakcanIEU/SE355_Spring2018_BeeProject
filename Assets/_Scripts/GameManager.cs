@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public int soldierBeeCost;
-    public int workerBeeCost;
+    //Game rule values
+    public int soldierBeeResourceCost;
+    public int workerBeeResourceCost;
+
+    public int soldierBeeQuotaCost;
+    public int workerBeeQuotaCost;
+
 }
