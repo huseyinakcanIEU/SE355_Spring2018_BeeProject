@@ -5,8 +5,9 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     public int concurentBee = 0;
-    public string nodeType = null;
+    NodeType nodeType; // enum type of node
 
+    public string nodeOwner; //string degisebilir suan bilemedim
 
 
     enum NodeType
@@ -19,11 +20,11 @@ public class Node : MonoBehaviour
     {
         if (gameObject.CompareTag("ResourceNode"))
         {
-            nodeType = NodeType.Resource.ToString();
+            nodeType = NodeType.Resource;
         }
         else if (gameObject.CompareTag("ControlNode"))
         {
-            nodeType = NodeType.Control.ToString();
+            nodeType = NodeType.Control;
         }
     }
 }

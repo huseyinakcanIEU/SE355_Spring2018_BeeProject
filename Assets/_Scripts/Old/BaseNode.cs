@@ -146,6 +146,8 @@ public class BaseNode : MonoBehaviour {
         currentBaseResource += 5;
     }
 
+    //Arda: alttaki parcalar ne ise yariyor tam bir fikrim yok
+
     //Need to now who has how many bees in a particular resource.
     //Worker and Soldier bees need to be an object with an attribute to keep track of the owner of them...
     private void AddHoneyStockWithWorkerBee()

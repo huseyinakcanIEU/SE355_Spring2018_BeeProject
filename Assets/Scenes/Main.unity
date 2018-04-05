@@ -1693,7 +1693,8 @@ Prefab:
       propertyPath: m_TagString
       value: BaseP2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114245184395960804, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &876487565
@@ -2331,7 +2332,8 @@ Prefab:
       value: 
       objectReference: {fileID: 1493148751270236, guid: 6bc881003140f2445a03b0f306beacca,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114245184395960804, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a2bd6af8f4e16d549ab1b5bb278fb8ed, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1330172547
