@@ -104,6 +104,13 @@ public class BaseNode : MonoBehaviour {
                 GameObject tempObj = Instantiate(soldierBeePrefab,spawnPositions[0].position,Quaternion.identity); //instantiate a bee from base player 1
 
                 tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+               // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
+
+                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
+                spawnPositions[0].position = new Vector3(randomX,randomY,0)  ; 
+                Debug.Log("ggg");
+                
             }
             else
             {
@@ -120,6 +127,11 @@ public class BaseNode : MonoBehaviour {
                 GameObject tempObj = Instantiate(soldierBeePrefab, spawnPositions[0].position, Quaternion.identity); //instantiate a bee from base player 1
                 tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
                 //Debug.Log("WALLLLLDOOOOOOOO!!");
+                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
+
+                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
+                spawnPositions[0].position = new Vector3(randomX,randomY,0)  ; 
             }
             else
             {
@@ -135,7 +147,57 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateWorkerBee()
     {
-        //asker ari fonk. bakarak doldur
+       if (baseOwner == Player.P1)
+        {
+           
+            
+            if (currentBaseResource >= _workerBeeResourceCost && playerManager.concurrentBee_P1 < _maxBeeQuota)
+            {
+                currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
+
+                //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
+                GameObject tempObj = Instantiate(workerBeePrefab,spawnPositions[1].position,Quaternion.identity); //instantiate a bee from base player 1
+
+                tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+               // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
+
+                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                float randomY = Random.Range(transform.position.y - 0.2f, transform.position.y - 1);
+                spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
+                
+                
+            }
+            else
+            {
+                Debug.Log("CantCreateWorker P1-> " + "CurrRes=" + currentBaseResource + ">" + "WorkerCost= " + _workerBeeResourceCost + "&&" + " " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+            }
+        }
+        else if (baseOwner == Player.P2)
+        {
+            if (currentBaseResource >= _workerBeeResourceCost && playerManager.concurrentBee_P2 < _maxBeeQuota)
+            {
+                currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P2 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
+
+                GameObject tempObj = Instantiate(workerBeePrefab, spawnPositions[1].position, Quaternion.identity); //instantiate a bee from base player 1
+                tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+                //Debug.Log("WALLLLLDOOOOOOOO!!");
+                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
+
+                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
+                spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
+            }
+            else
+            {
+                Debug.Log("CantCreateWorker P2-> " + "CurrRes=" + currentBaseResource + ">" + "workerCost= " + _workerBeeResourceCost + " && " + "P2concurrBee= " + playerManager.concurrentBee_P2 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player settings may wrong. Check P1 and P2 settings or mailto: ardazeytin@outlook.com or Call 911");
+        }
     }
 
 
