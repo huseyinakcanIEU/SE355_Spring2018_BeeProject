@@ -106,9 +106,10 @@ public class BaseNode : MonoBehaviour {
                 currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
 
+                //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
                 GameObject tempObj = Instantiate(soldierBeePrefab,spawnPositions[0].position,Quaternion.identity); //instantiate a bee from base player 1
+
                 tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
-                //Debug.Log("WALLLLLDOOOOOOOO!!");
             }
             else
             {
@@ -136,36 +137,25 @@ public class BaseNode : MonoBehaviour {
             Debug.LogWarning("Player settings may wrong. Check P1 and P2 settings or mailto: ardazeytin@outlook.com");
         }
 
-        //if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < maxQuota) // kimden uretiyor ona gore check et
-        //{
-        //    currentBaseResource -= soldierBeeCost;
-        //    _bee.SetSoldierBeeNumber(_bee.GetSoldierBeeNumber() + 1);
-        //    _bee.SetQuota(_bee.GetQuota() + 1);
-        //}
-        //else { Debug.Log("Soldier creation error;");}
     }
 
     public void CreateWorkerBee()
     {
-        if (currentBaseResource >= workerBeeCost && _bee.GetQuota() < maxQuota)
-        {
-            currentBaseResource -= workerBeeCost;
-            _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
-            _bee.SetQuota(_bee.GetQuota() + 1);
-        }
-        else { Debug.Log("Worker creation error;"); }
+        //if (currentBaseResource >= workerBeeCost && _bee.GetQuota() < maxQuota)
+        //{
+        //    currentBaseResource -= workerBeeCost;
+        //    _bee.SetWorkerBeeNumber(_bee.GetWorkerBeeNumber() + 1);
+        //    _bee.SetQuota(_bee.GetQuota() + 1);
+        //}
+        //else { Debug.Log("Worker creation error;"); }
 
     }
 
-    private void InstatiateBee(GameObject beePrefab)
-    {
-
-    }
 
     //standart resource gathering without using resource node
     private void AddHoneyStock()
     {
-        Debug.Log("Adding honey stock:" + currentBaseResource);
+        Debug.Log("Base " + baseOwner +" resource= "+ currentBaseResource);
         currentBaseResource += 5;
     }
 
