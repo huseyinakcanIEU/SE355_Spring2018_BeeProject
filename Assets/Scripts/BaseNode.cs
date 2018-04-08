@@ -32,7 +32,9 @@ public class BaseNode : MonoBehaviour {
     public int concurrentSoldierBee = 0; //base de kac tane soldıer arı var
     public int concurrentWorkerBee = 0; //base node kac tane worker var
 
+    [HideInInspector]
     public string concurrentSoldierBeeText;
+    [HideInInspector]
     public string concurrentWorkerBeeText;
 
     enum Player
@@ -103,7 +105,9 @@ public class BaseNode : MonoBehaviour {
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
                 concurrentSoldierBee++;
                 concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
-                GUIManager.Instance.baseNodeConcurrentBeePanel_P1.GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
+                GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
+                
+                
                 //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
                 //GameObject tempObj = Instantiate(soldierBeePrefab,spawnPositions[0].position,Quaternion.identity); //instantiate a bee from base player 1
 
@@ -127,15 +131,19 @@ public class BaseNode : MonoBehaviour {
             {
                 currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P2 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
+                concurrentSoldierBee++;
+                concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
+                GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
 
-                GameObject tempObj = Instantiate(soldierBeePrefab, spawnPositions[0].position, Quaternion.identity); //instantiate a bee from base player 1
-                tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+
+                //GameObject tempObj = Instantiate(soldierBeePrefab, spawnPositions[0].position, Quaternion.identity); //instantiate a bee from base player 1
+                //tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
                 //Debug.Log("WALLLLLDOOOOOOOO!!");
                 // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
 
-                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
-                spawnPositions[0].position = new Vector3(randomX,randomY,0)  ; 
+                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                //float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
+                //spawnPositions[0].position = new Vector3(randomX,randomY,0)  ; 
             }
             else
             {
@@ -159,18 +167,21 @@ public class BaseNode : MonoBehaviour {
             {
                 currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
+                concurrentWorkerBee++;
+                concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
+                GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
 
                 //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
-                GameObject tempObj = Instantiate(workerBeePrefab,spawnPositions[1].position,Quaternion.identity); //instantiate a bee from base player 1
+                //GameObject tempObj = Instantiate(workerBeePrefab,spawnPositions[1].position,Quaternion.identity); //instantiate a bee from base player 1
 
-                tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
-               // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
+                //tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
 
-                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                float randomY = Random.Range(transform.position.y - 0.2f, transform.position.y - 1);
-                spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
-                
-                
+                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                //float randomY = Random.Range(transform.position.y - 0.2f, transform.position.y - 1);
+                //spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
+
+
             }
             else
             {
@@ -183,15 +194,18 @@ public class BaseNode : MonoBehaviour {
             {
                 currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P2 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
+                concurrentWorkerBee++;
+                concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
+                GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
 
-                GameObject tempObj = Instantiate(workerBeePrefab, spawnPositions[1].position, Quaternion.identity); //instantiate a bee from base player 1
-                tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
+                //GameObject tempObj = Instantiate(workerBeePrefab, spawnPositions[1].position, Quaternion.identity); //instantiate a bee from base player 1
+                //tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
                 //Debug.Log("WALLLLLDOOOOOOOO!!");
                 // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
 
-                float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
-                spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
+                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
+                //float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
+                //spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
             }
             else
             {
