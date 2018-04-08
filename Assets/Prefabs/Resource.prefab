@@ -20,10 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4228471275832128}
   - component: {fileID: 212311654029915908}
-  - component: {fileID: 114208073810045328}
   - component: {fileID: 61162230791506988}
-  - component: {fileID: 114698277558175958}
-  - component: {fileID: 114446273181890986}
   m_Layer: 0
   m_Name: Resource
   m_TagString: Resource
@@ -69,49 +66,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &114208073810045328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1401314688350264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 588463fc18afaad4d8cef239786516ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiManager: {fileID: 0}
-  _stockRatio: 0
-  _location: {x: 0, y: 0}
-  _workerBeeNumberP1: 0
-  _workerBeeNumberP2: 0
---- !u!114 &114446273181890986
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1401314688350264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f015ef487dd1c4a4abd18c3fdd93db44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _soldierBeeNumber: 0
-  _workerBeeNumber: 0
-  _quota: 0
---- !u!114 &114698277558175958
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1401314688350264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc322dae6f368fe4ebd791f1a53f8d6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _uiManager: {fileID: 0}
-  isTarget: 0
 --- !u!212 &212311654029915908
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class BaseNode : MonoBehaviour {
     public UIManager _uiManager;
-    //private Bee _bee;
-    public int _health; //kralice ari icin gecici sanirim(test)
+    public int healthOfBase; //kralice ari icin gecici sanirim(test)
     
-    //public int maxQuota;
-    //private int soldierBeeCost;
-    //private int workerBeeCost;
-    private List<GameObject> _resourceList;
 
 
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
@@ -208,20 +203,8 @@ public class BaseNode : MonoBehaviour {
         currentBaseResource += 5;
     }
 
-    //Arda: alttaki parcalar ne ise yariyor tam bir fikrim yok
 
-    //Need to now who has how many bees in a particular resource.
-    //Worker and Soldier bees need to be an object with an attribute to keep track of the owner of them...
-    private void AddHoneyStockWithWorkerBee()
-    {
-        _resourceList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Resource"));
-        foreach(var go in _resourceList)
-        {
-            Debug.Log("Working forEach");
-            //go.GetComponent<>
-        }
-    }
-
+    //node highligth
     private void OnMouseDown()
     {
         _uiManager.Highlight(gameObject);

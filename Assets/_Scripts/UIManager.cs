@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//bu kod komple değişecek
 public class UIManager : MonoBehaviour {
 
     public GameObject SendBeeUI;
@@ -34,7 +36,7 @@ public class UIManager : MonoBehaviour {
         else if(gameObjects.Count == 1)
         {
             gameObjects.Add(obje);
-            obje.GetComponent<GlobalTargetChecker>().isTarget = true;
+            //obje.GetComponent<GlobalTargetChecker>().isTarget = true;
         }
         else if (gameObjects.Count == 2)
         {
