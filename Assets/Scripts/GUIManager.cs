@@ -5,34 +5,46 @@ using UnityEngine.UI;
 
 public class GUIManager : MonoBehaviour 
 {
+    #region Singleton GUIManager
 
-	public GameObject optpanel;
+    private static GUIManager _instance;
 
+    public static GUIManager Instance
+    {
+
+        get
+        {
+
+            if (_instance == null)
+            {
+                GameObject go = new GameObject("GUIManager");
+                go.AddComponent<GUIManager>();
+            }
+
+            return _instance;
+
+        }
+
+    }
+
+
+    #endregion
+
+    public GameObject optpanel;
 	public AudioSource music;
-
     public Text musicText;
 
-	private static GUIManager _instance;
+    public GameObject baseNodeConcurrentBeePanel_P1;
+    public GameObject baseNodeConcurrentBeePanel_P2;
 
-	public static GUIManager Instance 
-	{
 
-		get 
-		{
+    void Awake()
+    {
+        _instance = this;
 
-			if (_instance == null) 
-			{
-				GameObject go = new GameObject ("Game Manager");
-				go.AddComponent<GUIManager> ();
-			}
+    }
 
-			return _instance;
-
-		}
-
-	}
-
-	public void HostButton()
+    public void HostButton()
 	{
 		Debug.Log ("Host Button called");
 	}
@@ -47,7 +59,7 @@ public class GUIManager : MonoBehaviour
 		Debug.Log ("Option Button called");
 		optpanel.gameObject.SetActive (true);
 
-	}
+    }
 
 	public void OptionDoneButton()
 	{
@@ -72,9 +84,5 @@ public class GUIManager : MonoBehaviour
 	}
 
 
-	void Awake()
-	{
-		_instance = this;
-	}
 
 }

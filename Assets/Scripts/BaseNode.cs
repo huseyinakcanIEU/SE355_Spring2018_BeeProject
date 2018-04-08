@@ -103,7 +103,7 @@ public class BaseNode : MonoBehaviour {
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
                 concurrentSoldierBee++;
                 concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
-
+                GUIManager.Instance.baseNodeConcurrentBeePanel_P1.GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
                 //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
                 //GameObject tempObj = Instantiate(soldierBeePrefab,spawnPositions[0].position,Quaternion.identity); //instantiate a bee from base player 1
 
