@@ -71,6 +71,12 @@ public class GUIManager : MonoBehaviour
 
 	}
 
+	public void ButtonClickDebug(string text)
+	{
+		Debug.Log (text + " button clicked");
+	}
+
+
 
 	void Awake()
 	{
