@@ -33,4 +33,19 @@ public class TestCallerScript : MonoBehaviour
 	{
 		GUIManager.Instance.MusicButton ();
 	}
+
+	public void WarningButtonCaller()
+	{
+		GUIManager.Instance.WarningButton ();
+	}
+
+	public void ConfirmationButtonCaller()
+	{
+		GUIManager.Instance.ConfirmationButton ();
+	}
+
+	public void AlternativeButtonCaller()
+	{
+		GUIManager.Instance.AlternativeButton ();
+	}
 }

@@ -76,7 +76,20 @@ public class GUIManager : MonoBehaviour
 		Debug.Log (text + " button clicked");
 	}
 
+	public void WarningButton()
+	{
+		ButtonClickDebug("warning");
+	}
 
+	public void ConfirmationButton()
+	{
+		ButtonClickDebug("confirmation");
+	}
+
+	public void AlternativeButton()
+	{
+		ButtonClickDebug("alternative");
+	}
 
 	void Awake()
 	{
