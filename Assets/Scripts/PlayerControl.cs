@@ -35,8 +35,18 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<BaseNode>().concurrentSoldierBee > 0)
                         {
-                            initialObject.GetComponent<BaseNode>().concurrentSoldierBee--;
-                            targetObject.GetComponent<Node>().concurentBee++;
+                            if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
+                            {
+                                initialObject.GetComponent<BaseNode>().concurrentSoldierBee--;
+                                targetObject.GetComponent<Node>().concurrentBee_P1++;
+                            }
+                            else if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
+                            {
+                                initialObject.GetComponent<BaseNode>().concurrentSoldierBee--;
+                                targetObject.GetComponent<Node>().concurrentBee_P2++;
+                            }
+
+                            //targetObject.GetComponent<Node>().concurentBee++;
                             Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                         }
                         else
@@ -53,8 +63,16 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<BaseNode>().concurrentWorkerBee > 0)
                         {
-                            initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                            targetObject.GetComponent<Node>().concurentBee++;
+                            if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
+                            {
+                                initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+                                targetObject.GetComponent<Node>().concurrentBee_P1++;
+                            }
+                            else if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
+                            {
+                                initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+                                targetObject.GetComponent<Node>().concurrentBee_P2++;
+                            }
                             Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
                         }
                         else
@@ -76,8 +94,16 @@ public class PlayerControl : MonoBehaviour {
                     {
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
-                            initialObject.GetComponent<Node>().concurentBee--;
-                            targetObject.GetComponent<Node>().concurentBee++;
+                            if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurrentBee_P1--;
+                                targetObject.GetComponent<Node>().concurrentBee_P1++;
+                            }
+                            else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurrentBee_P2--;
+                                targetObject.GetComponent<Node>().concurrentBee_P2++;
+                            }
                             Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
                         }
                         else
@@ -102,8 +128,17 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
-                            initialObject.GetComponent<Node>().concurentBee--;
-                            targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
+                            if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurrentBee_P1--;
+                                targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
+                            }
+                            else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurrentBee_P2--;
+                                targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
+                            }
+
                             Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                         }
                         else
@@ -120,8 +155,16 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
-                            initialObject.GetComponent<Node>().concurentBee--;
-                            targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                            if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurrentBee_P1--;
+                                targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                            }
+                            else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurrentBee_P2--;
+                                targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                            }
                             Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
                         }
                         else

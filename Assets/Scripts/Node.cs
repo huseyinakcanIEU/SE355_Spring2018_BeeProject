@@ -54,7 +54,8 @@ public class Node : MonoBehaviour
 
     private void Update()
     {
-        
+        CalculateConcurrentBee();
+        DecideNodeOwner();
 
         if (concurrentBeeText != null)
         {
@@ -67,11 +68,19 @@ public class Node : MonoBehaviour
         if (concurrentBee_P1 > concurrentBee_P2)
         {
             concurentBee = concurrentBee_P1 - concurrentBee_P2;
+            concurrentBeeText.color = Color.cyan;
         }
         else if (concurrentBee_P2 > concurrentBee_P1)
         {
             concurentBee = concurrentBee_P2 - concurrentBee_P1;
+            concurrentBeeText.color = Color.red;
         }
+        else if (concurrentBee_P1 == 0 && concurrentBee_P2 == 0)
+        {
+            concurentBee = 0;
+            concurrentBeeText.color = Color.black;
+        }
+
     }
 
     void DecideNodeOwner()
