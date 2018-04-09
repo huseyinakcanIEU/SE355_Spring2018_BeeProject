@@ -31,11 +31,12 @@ public class BaseNode : MonoBehaviour {
 
     public int concurrentSoldierBee = 0; //base de kac tane soldıer arı var
     public int concurrentWorkerBee = 0; //base node kac tane worker var
+    public int concurrentBee = 0; //toplamda kac tane ari base uzerinde bekliyor
 
-    [HideInInspector]
-    public string concurrentSoldierBeeText;
-    [HideInInspector]
-    public string concurrentWorkerBeeText;
+    //[HideInInspector]
+    private string concurrentSoldierBeeText;
+    //[HideInInspector]
+    private string concurrentWorkerBeeText;
 
     enum Player
     {
@@ -90,7 +91,7 @@ public class BaseNode : MonoBehaviour {
 
     void Update()
     {
-        //update iste falan fistik
+        concurrentBee = concurrentSoldierBee + concurrentWorkerBee;
     }
 
     public void CreateSoldierBee()
@@ -222,7 +223,7 @@ public class BaseNode : MonoBehaviour {
     //standart resource gathering without using resource additional nodes
     private void AddHoneyStock()
     {
-        Debug.Log("Base " + baseOwner +" resource= "+ currentBaseResource);
+        //Debug.Log("Base " + baseOwner +" resource= "+ currentBaseResource);
         currentBaseResource += 5;
     }
 

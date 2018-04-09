@@ -7,6 +7,9 @@ public class PlayerControl : MonoBehaviour {
     private GameObject bee;
 
     public bool isFirstClick = false;
+    public bool isTransferring = false;
+    public int transferInterval = 1; //1 second
+    private float nextTransferTime = 0;
 
     public GameObject underMouseObject;
     public GameObject initialObject; //first selected
@@ -16,9 +19,44 @@ public class PlayerControl : MonoBehaviour {
     {
         Swipe();
         underMouseObject = OnTargetOver();
+
+        //hedef node'u belirle
         if (isFirstClick == true && underMouseObject != initialObject)
         {
             targetObject = underMouseObject;
+            //kosullar uygunsa ari gonder
+
+            //Base'den node'a gondermeyi dene
+            if (initialObject.GetComponent<BaseNode>() != null && initialObject.GetComponent<BaseNode>().concurrentBee > 0 /*&& isTransferring == false*/)
+            {
+                if (targetObject != null && targetObject.GetComponent<Node>() != null)
+                {
+                    if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control)
+                    {
+                        //StartCoroutine(TransferBee(initialObject.GetComponent<BaseNode>().concurrentSoldierBee, targetObject.GetComponent<Node>().concurentBee));
+                        if (Time.time > nextTransferTime)
+                        {
+                            nextTransferTime = Time.time + transferInterval;
+                            initialObject.GetComponent<BaseNode>().concurrentSoldierBee--;
+                            targetObject.GetComponent<Node>().concurentBee++;
+                            Debug.Log("Transferred Soldier Bee");
+                        }
+                        //isTransferring = true;
+                        //Debug.Log("Transferring Soldier Bee");
+                    }
+                    else if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource)
+                    {
+                        //StartCoroutine(TransferBee(initialObject.GetComponent<BaseNode>().concurrentWorkerBee, targetObject.GetComponent<Node>().concurentBee));
+                        //isTransferring = true;
+                        //Debug.Log("Transferring Worker Bee");
+                    }   
+                }
+            }
+            else
+            {
+                StopCoroutine("TransferBee");
+                isTransferring = false;
+            }
         }
 
 
@@ -27,7 +65,12 @@ public class PlayerControl : MonoBehaviour {
         //SetTarget();
     }
 
-
+    IEnumerator TransferBee(int decrease, int increase)
+    {
+        decrease--;
+        yield return new WaitForSecondsRealtime(1);
+        increase++;
+    }
 
 
 
@@ -67,6 +110,7 @@ public class PlayerControl : MonoBehaviour {
             //reset values
             isFirstClick = false;
             initialObject = null;
+            targetObject = null;
 
         }
     }
