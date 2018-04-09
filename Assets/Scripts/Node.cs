@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //Eksik Ozellikler->
 //-->>kontrol noktalarinda orumcek mi kus mu ne sakat bir sey varmis
@@ -15,6 +16,8 @@ public class Node : MonoBehaviour
 
     public string nodeOwner; //string degisebilir suan bilemedim
     public Color nodeSpriteColorOverlay; //p1 baskin ise mavi, p2 baskin ise kirmizi yap
+
+    public Text concurrentBeeText; //show number of concurrentBee --Note: you have to put Text object every node manually in editor
 
     public NodeType NodeType1
     {
@@ -44,6 +47,14 @@ public class Node : MonoBehaviour
         else if (gameObject.CompareTag("ControlNode"))
         {
             NodeType1 = NodeType.Control;
+        }
+    }
+
+    private void Update()
+    {
+        if (concurrentBeeText != null)
+        {
+            concurrentBeeText.text = concurentBee.ToString(); //update concurrent bee ui (top of node)
         }
     }
 }
