@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4797569635885152}
   - component: {fileID: 212930058091472278}
   - component: {fileID: 61798996998119070}
+  - component: {fileID: 114217116981837894}
   m_Layer: 0
   m_Name: Control Point
   m_TagString: Untagged
@@ -66,6 +67,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &114217116981837894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1031507297711882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954d9a6c31e4498498758afb273d4804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  concurentBee: 0
+  nodeOwner: 
+  nodeSpriteColorOverlay: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &212930058091472278
 SpriteRenderer:
   m_ObjectHideFlags: 1
