@@ -92,6 +92,20 @@ public class BaseNode : MonoBehaviour {
     void Update()
     {
         concurrentBee = concurrentSoldierBee + concurrentWorkerBee;
+        concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
+        concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
+
+        if (baseOwner == Player.P1)
+        {
+            GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
+            GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
+        }
+        else if (baseOwner == Player.P2)
+        {
+            //Player 2 paneli implemnt edilmedi 
+            //GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
+            //GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
+        }
     }
 
     public void CreateSoldierBee()
@@ -170,6 +184,7 @@ public class BaseNode : MonoBehaviour {
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
                 concurrentWorkerBee++;
                 concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
+
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
 
                 //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
