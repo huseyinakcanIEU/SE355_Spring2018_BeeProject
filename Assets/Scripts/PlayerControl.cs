@@ -33,22 +33,41 @@ public class PlayerControl : MonoBehaviour {
                 {
                     if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control)
                     {
-                        //StartCoroutine(TransferBee(initialObject.GetComponent<BaseNode>().concurrentSoldierBee, targetObject.GetComponent<Node>().concurentBee));
                         if (Time.time > nextTransferTime)
                         {
                             nextTransferTime = Time.time + transferInterval;
-                            initialObject.GetComponent<BaseNode>().concurrentSoldierBee--;
-                            targetObject.GetComponent<Node>().concurentBee++;
-                            Debug.Log("Transferred Soldier Bee");
+                            if (initialObject.GetComponent<BaseNode>().concurrentSoldierBee > 0)
+                            {
+                                initialObject.GetComponent<BaseNode>().concurrentSoldierBee--;
+                                targetObject.GetComponent<Node>().concurentBee++;
+                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
+                            }
+                            else
+                            {
+                                Debug.Log("Not enough soldier in ->> " + initialObject.name);
+                            }
+                            
+                            
                         }
-                        //isTransferring = true;
-                        //Debug.Log("Transferring Soldier Bee");
+
                     }
                     else if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource)
                     {
-                        //StartCoroutine(TransferBee(initialObject.GetComponent<BaseNode>().concurrentWorkerBee, targetObject.GetComponent<Node>().concurentBee));
-                        //isTransferring = true;
-                        //Debug.Log("Transferring Worker Bee");
+                        if (Time.time > nextTransferTime)
+                        {
+                            nextTransferTime = Time.time + transferInterval;
+                            if (initialObject.GetComponent<BaseNode>().concurrentWorkerBee > 0)
+                            {
+                                initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+                                targetObject.GetComponent<Node>().concurentBee++;
+                                Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
+                            }
+                            else
+                            {
+                                Debug.Log("Not enough worker in ->> " + initialObject.name);
+                            }
+                            
+                        }
                     }   
                 }
             }
