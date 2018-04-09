@@ -71,11 +71,35 @@ public class PlayerControl : MonoBehaviour {
                     }   
                 }
             }
-            else
+            //Node'dan node'a gonderme
+            else if (initialObject.GetComponent<Node>() != null && initialObject.GetComponent<Node>().concurentBee > 0)
             {
-                StopCoroutine("TransferBee");
-                isTransferring = false;
+                if (targetObject != null && targetObject.GetComponent<Node>() != null)
+                {
+                    if (targetObject.GetComponent<Node>().NodeType1 == initialObject.GetComponent<Node>().NodeType1)
+                    {
+                        if (Time.time > nextTransferTime)
+                        {
+                            nextTransferTime = Time.time + transferInterval;
+                            if (initialObject.GetComponent<Node>().concurentBee > 0)
+                            {
+                                initialObject.GetComponent<Node>().concurentBee--;
+                                targetObject.GetComponent<Node>().concurentBee++;
+                                Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
+                            }
+                            else
+                            {
+                                Debug.Log("Not enough Bee in ->> " + initialObject.name);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Node type didnt match! " + initialObject.name + " != " + targetObject.name);
+                    }
+                }
             }
+
         }
 
 
@@ -83,14 +107,6 @@ public class PlayerControl : MonoBehaviour {
         //ClickSelect();
         //SetTarget();
     }
-
-    IEnumerator TransferBee(int decrease, int increase)
-    {
-        decrease--;
-        yield return new WaitForSecondsRealtime(1);
-        increase++;
-    }
-
 
 
     public void Swipe()
