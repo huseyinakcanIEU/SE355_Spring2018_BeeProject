@@ -7,7 +7,6 @@ public class PlayerControl : MonoBehaviour {
     private GameObject bee;
 
     public bool isFirstClick = false;
-    public bool isTransferring = false;
     public int transferInterval = 1; //1 second
     private float nextTransferTime = 0;
 
@@ -27,7 +26,7 @@ public class PlayerControl : MonoBehaviour {
             //kosullar uygunsa ari gonder
 
             //Base'den node'a gondermeyi dene
-            if (initialObject.GetComponent<BaseNode>() != null && targetObject != null && targetObject.GetComponent<Node>() != null && initialObject.GetComponent<BaseNode>().concurrentBee > 0 /*&& isTransferring == false*/)
+            if (initialObject.GetComponent<BaseNode>() != null && targetObject != null && targetObject.GetComponent<Node>() != null && initialObject.GetComponent<BaseNode>().concurrentBee > 0)
             {
                 if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control)
                 {
@@ -44,8 +43,6 @@ public class PlayerControl : MonoBehaviour {
                         {
                             Debug.Log("Not enough soldier in ->> " + initialObject.name);
                         }
-
-
                     }
 
                 }
@@ -135,11 +132,7 @@ public class PlayerControl : MonoBehaviour {
                 }
             }
         }
-
-
         // Debug.Log("There is a " + underMouseObject + " under your cursor");
-        //ClickSelect();
-        //SetTarget();
     }
 
 
@@ -148,39 +141,33 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             //save began touch 2d point
-            //firstPressPos = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
-
             Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
             Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
             if (hit)
             {
-                Debug.Log("Seçtim");
                 initialObject = hit.transform.gameObject; //ilk tıkladın elinde bu var
+                Debug.Log("Selected --> " + initialObject);
                 isFirstClick = true;
-
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-
-
             Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
             Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
             if (hit)
             {
-                Debug.Log("Bıraktım");
+                Debug.Log("Mouse button released");
             }
             
             //reset values
             isFirstClick = false;
             initialObject = null;
             targetObject = null;
-
         }
     }
 
@@ -202,42 +189,42 @@ public class PlayerControl : MonoBehaviour {
     }
 
 
-    void ClickSelect()
-    {
+    //void ClickSelect()
+    //{
 
-        if (Input.GetMouseButtonDown(0) && !isFirstClick)
-        {
-            //Converting Mouse Pos to 2D (vector2) World Pos
-            Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
+    //    if (Input.GetMouseButtonDown(0) && !isFirstClick)
+    //    {
+    //        //Converting Mouse Pos to 2D (vector2) World Pos
+    //        Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+    //            Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+    //        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
-            if (hit)
-            {
-                Debug.Log(hit.transform.name);
-                isFirstClick = true;
-                bee = hit.transform.gameObject;
-            }
+    //        if (hit)
+    //        {
+    //            Debug.Log(hit.transform.name);
+    //            isFirstClick = true;
+    //            bee = hit.transform.gameObject;
+    //        }
 
-        }
-        else if (Input.GetMouseButtonDown(0) && isFirstClick)
-        {
+    //    }
+    //    else if (Input.GetMouseButtonDown(0) && isFirstClick)
+    //    {
 
-            Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-            Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
+    //        Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
+    //        Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+    //        RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero, 0f);
 
-            if (hit)
-            {
-                while ((bee.transform.position - hit.transform.position).magnitude < 0.1f)
-                {
-                    Vector2 direction = (hit.transform.position - bee.transform.position);
-                    direction.Normalize();
-                    bee.transform.Translate(direction * Time.deltaTime);
-                }
+    //        if (hit)
+    //        {
+    //            while ((bee.transform.position - hit.transform.position).magnitude < 0.1f)
+    //            {
+    //                Vector2 direction = (hit.transform.position - bee.transform.position);
+    //                direction.Normalize();
+    //                bee.transform.Translate(direction * Time.deltaTime);
+    //            }
 
-            }
-            initialObject = null;
-        }
-    }
+    //        }
+    //        initialObject = null;
+    //    }
+    //}
 }
