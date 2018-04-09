@@ -33,7 +33,21 @@ public class BaseNode : MonoBehaviour {
     private string concurrentSoldierBeeText;
     private string concurrentWorkerBeeText;
 
-    enum Player
+    //encapsulation
+    public Player BaseOwner
+    {
+        get
+        {
+            return baseOwner;
+        }
+
+        set
+        {
+            baseOwner = value;
+        }
+    }
+
+    public enum Player
     {
         P1,
         P2,

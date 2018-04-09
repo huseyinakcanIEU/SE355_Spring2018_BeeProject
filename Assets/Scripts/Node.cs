@@ -12,6 +12,8 @@ using UnityEngine.UI;
 public class Node : MonoBehaviour
 {
     public int concurentBee = 0; //how many bees in this node?
+    public int concurrentBee_P1 = 0;
+    public int concurrentBee_P2 = 0;
     NodeType nodeType; // enum type of node
 
     public string nodeOwner; //string degisebilir suan bilemedim
@@ -52,9 +54,37 @@ public class Node : MonoBehaviour
 
     private void Update()
     {
+        
+
         if (concurrentBeeText != null)
         {
             concurrentBeeText.text = concurentBee.ToString(); //update concurrent bee ui (top of node)
+        }
+    }
+
+    void CalculateConcurrentBee()
+    {
+        if (concurrentBee_P1 > concurrentBee_P2)
+        {
+            concurentBee = concurrentBee_P1 - concurrentBee_P2;
+        }
+        else if (concurrentBee_P2 > concurrentBee_P1)
+        {
+            concurentBee = concurrentBee_P2 - concurrentBee_P1;
+        }
+    }
+
+    void DecideNodeOwner()
+    {
+        if (concurrentBee_P1 > concurrentBee_P2)
+        {
+            nodeOwner = "P1";
+            //do other stuff
+        }
+        else if (concurrentBee_P2 > concurrentBee_P1)
+        {
+            nodeOwner = "P2";
+            // do other stuff
         }
     }
 }
