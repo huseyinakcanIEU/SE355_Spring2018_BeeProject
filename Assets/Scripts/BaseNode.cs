@@ -4,11 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BaseNode : MonoBehaviour {
-    public UIManager _uiManager;
     public int healthOfBase; //kralice ari icin gecici sanirim(test)
     
-
-
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
     private PlayerManager playerManager; //player manager class ref
@@ -33,9 +30,7 @@ public class BaseNode : MonoBehaviour {
     public int concurrentWorkerBee = 0; //base node kac tane worker var
     public int concurrentBee = 0; //toplamda kac tane ari base uzerinde bekliyor
 
-    //[HideInInspector]
     private string concurrentSoldierBeeText;
-    //[HideInInspector]
     private string concurrentWorkerBeeText;
 
     enum Player
@@ -46,9 +41,6 @@ public class BaseNode : MonoBehaviour {
 
     private void Awake()
     {
-        //_bee = GetComponent<Bee>();
-        _uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
         //set player manager ref
         playerManager = GameManager.Instance.GetComponent<PlayerManager>();
 
@@ -234,20 +226,10 @@ public class BaseNode : MonoBehaviour {
         }
     }
 
-
     //standart resource gathering without using resource additional nodes
     private void AddHoneyStock()
     {
         //Debug.Log("Base " + baseOwner +" resource= "+ currentBaseResource);
         currentBaseResource += 5;
     }
-
-
-    //node highligth
-    private void OnMouseDown()
-    {
-        _uiManager.Highlight(gameObject);
-    }
-
-
 }
