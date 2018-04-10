@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BaseNode : MonoBehaviour {
-    public int healthOfBase; //kralice ari icin gecici sanirim(test)
+    public int healthOfBase; //kralice ari vs icin kullanilabilir(suan kullanilmiyor)
     
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
@@ -33,7 +33,7 @@ public class BaseNode : MonoBehaviour {
     private string concurrentSoldierBeeText;
     private string concurrentWorkerBeeText;
 
-    //encapsulation
+    //encapsulation baseowner
     public Player BaseOwner
     {
         get
@@ -84,7 +84,7 @@ public class BaseNode : MonoBehaviour {
         //Increasing _honeyStock 5 per second.
         InvokeRepeating("AddHoneyStock", 1, 1);
 
-        //add all spawn pos transforms to spawnPos list
+        //add all spawn pos transforms to spawnPos list(Bu iptal oldu suan kullanilmiyor)
         var tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
         foreach (var child in tempTransformOfChildren)
         {
@@ -101,7 +101,7 @@ public class BaseNode : MonoBehaviour {
         concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
         concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
 
-        //update base concurrentBee panel
+        //update base concurrentBee panel(base uzerindeki Soldier:0 Worker:0 yazan panel)
         if (baseOwner == Player.P1)
         {
             GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
@@ -116,17 +116,17 @@ public class BaseNode : MonoBehaviour {
 
     public void CreateSoldierBee()
     {
-        
+        //Base'in sahibi player 1 ise
         if (baseOwner == Player.P1)
         {
-            
+            //Yeterli kaynak ve kota varsa asker uret
             if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < _maxBeeQuota)
             {
                 currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
                 playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
-                concurrentSoldierBee++;
-                concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
-                GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
+                concurrentSoldierBee++; //increase concurrent soldier of P1 BaseNode
+                concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee; //update P1 base panel string
+                GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString(); //update panel text
                 
                 
                 //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)

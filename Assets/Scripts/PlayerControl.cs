@@ -7,31 +7,33 @@ public class PlayerControl : MonoBehaviour {
     private GameObject bee;
 
     public bool isFirstClick = false;
-    public int transferInterval = 1; //1 second
-    private float nextTransferTime = 0;
+    public int transferInterval = 1; //Sending bee rate(each second)
+    private float nextTransferTime = 0; 
 
     public GameObject underMouseObject;
-    public GameObject initialObject; //first selected
-    public GameObject targetObject; //second selected 
+    public GameObject initialObject; //first selected object
+    public GameObject targetObject; //second selected object
 
     void Update()
     {
-        Swipe();
+        Swipe(); //click & drag & drop (mouse)
         underMouseObject = OnTargetOver(); //update what is under cursor
         TransferBee();
     }
 
     private void TransferBee()
     {
-        //hedef node'u belirle
+        //ilk defa tiklandi ve ilk tiklanan uzerinde durulmuyorsa
         if (isFirstClick == true && underMouseObject != initialObject)
         {
-            targetObject = underMouseObject;
-            //kosullar uygunsa ari gonder
+            targetObject = underMouseObject; //gonderme hedefini al (ilk tiklanan obje initial, sonraki target)
+            
+            //Asagidaki kosullara gore ari gonder
 
             //Base'den node'a gondermeyi dene
             if (initialObject.GetComponent<BaseNode>() != null && targetObject != null && targetObject.GetComponent<Node>() != null && initialObject.GetComponent<BaseNode>().concurrentBee > 0)
             {
+                //if target node control point
                 if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control)
                 {
                     if (Time.time > nextTransferTime)
@@ -119,6 +121,7 @@ public class PlayerControl : MonoBehaviour {
                     }
 
                 }
+                //if target node resource point
                 else if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource)
                 {
                     if (Time.time > nextTransferTime)
@@ -216,6 +219,7 @@ public class PlayerControl : MonoBehaviour {
                 if (Time.time > nextTransferTime)
                 {
                     nextTransferTime = Time.time + transferInterval;
+                    //resource to resource point | control to control point check. Example: Dont send soldier to resource point
                     if (initialObject.GetComponent<Node>().NodeType1 == targetObject.GetComponent<Node>().NodeType1)
                     {
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
@@ -282,6 +286,7 @@ public class PlayerControl : MonoBehaviour {
             else if (initialObject.GetComponent<Node>() != null && targetObject != null && targetObject.GetComponent<BaseNode>() != null && initialObject.GetComponent<Node>().concurentBee > 0)
             {
                 //Debug.Log("NODE TO BASEEE");
+                //if sender node is control point
                 if (initialObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control)
                 {
                     if (Time.time > nextTransferTime)
@@ -331,6 +336,7 @@ public class PlayerControl : MonoBehaviour {
                     }
 
                 }
+                //if sender node is resource point
                 else if (initialObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource)
                 {
                     if (Time.time > nextTransferTime)

@@ -11,15 +11,17 @@ using UnityEngine.UI;
 public class Node : MonoBehaviour
 {
     public int concurentBee = 0; //how many bees in this node?
-    public int concurrentBee_P1 = 0;
-    public int concurrentBee_P2 = 0;
+    public int concurrentBee_P1 = 0; //how many bees Player1 have
+    public int concurrentBee_P2 = 0; // how many bees Player2 have
     NodeType nodeType; // enum type of node
 
-    public string nodeOwner = "P0"; //P0 = npc, P1 = player 1, P2 = player 2
+    public string nodeOwner = "P0"; //P0 = No owner(NPC or server), P1 = player 1, P2 = player 2
+    
     //public Color nodeSpriteColorOverlay; //p1 baskin ise mavi, p2 baskin ise kirmizi yap
 
     public Text concurrentBeeText; //show number of concurrentBee --Note: you have to put Text object every node manually in editor
 
+    //encapsulation
     public NodeType NodeType1
     {
         get
@@ -41,6 +43,7 @@ public class Node : MonoBehaviour
 
     private void Awake()
     {
+        //Decide node type before start the game
         if (gameObject.CompareTag("ResourceNode"))
         {
             NodeType1 = NodeType.Resource;
@@ -58,6 +61,7 @@ public class Node : MonoBehaviour
         UpdateConcurrentBeeText();
     }
 
+    //Calculate concurrentBee of node and set text color to owner(P1 = blue/cyan P2 = red)
     void CalculateConcurrentBee()
     {
         if (concurrentBee_P1 > concurrentBee_P2)
@@ -92,7 +96,7 @@ public class Node : MonoBehaviour
         }
         else if (concurrentBee_P1 == concurrentBee_P2)
         {
-            nodeOwner = "P0";
+            nodeOwner = "P0"; //Non
         }
     }
 
@@ -111,7 +115,7 @@ public class Node : MonoBehaviour
             }
             else
             {
-                concurrentBeeText.text = concurentBee.ToString();
+                concurrentBeeText.text = concurentBee.ToString(); //Shows black 0 text
             }
         }
     }
