@@ -241,28 +241,12 @@ public class PlayerControl : MonoBehaviour {
 
                                         Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
                                     }
-                                    ////P1 is sending to P2
-                                    //else if (targetObject.GetComponent<Node>().nodeOwner == "P2")
-                                    //{
-                                    //    initialObject.GetComponent<Node>().concurrentBee_P1--;
-
-                                    //    if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
-                                    //    {
-                                    //        targetObject.GetComponent<Node>().concurrentBee_P2--;
-                                    //    }
-                                    //    else
-                                    //    {
-                                    //        targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                    //    }
-
-                                    //    Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
-                                    //}
                                 }
                             }
                             //P2 is sender
                             else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
                             {
-                                //P2 is sending to P1
+                                //P2 is sending
                                 if (targetObject != null)
                                 {
                                     if (targetObject.GetComponent<Node>().nodeOwner == "P1" || targetObject.GetComponent<Node>().nodeOwner == "P0" || targetObject.GetComponent<Node>().nodeOwner == "P2")
@@ -305,18 +289,40 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
+                            //P1 sending bee to a base
                             if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
                             {
                                 initialObject.GetComponent<Node>().concurrentBee_P1--;
-                                targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
+                                //P1 fallback to own base
+                                if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
+                                }
+                                //P1 Attack to P2 base
+                                else if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentSoldierBee--;
+                                }
+
+                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                             }
+                            //P2 sending bee to a base
                             else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
                             {
                                 initialObject.GetComponent<Node>().concurrentBee_P2--;
-                                targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
-                            }
+                                //P2 attack to P1 base
+                                if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentSoldierBee--;
+                                }
+                                //P2 fallback to own base
+                                else if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentSoldierBee++;
+                                }
 
-                            Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
+                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
+                            }
                         }
                         else
                         {
@@ -332,17 +338,40 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
+                            //P1 sending bee to a base
                             if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
                             {
                                 initialObject.GetComponent<Node>().concurrentBee_P1--;
-                                targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                                //P1 fallback to own base
+                                if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                                }
+                                //P1 Attack to P2 base
+                                else if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+                                }
+
+                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                             }
+                            //P2 sending bee to a base
                             else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
                             {
                                 initialObject.GetComponent<Node>().concurrentBee_P2--;
-                                targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                                //P2 attack to P1 base
+                                if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+                                }
+                                //P2 fallback to own base
+                                else if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
+                                {
+                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
+                                }
+
+                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                             }
-                            Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
                         }
                         else
                         {
