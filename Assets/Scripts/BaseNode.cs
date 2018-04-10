@@ -101,6 +101,7 @@ public class BaseNode : MonoBehaviour {
         concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
         concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
 
+        //update base concurrentBee panel
         if (baseOwner == Player.P1)
         {
             GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
@@ -108,9 +109,8 @@ public class BaseNode : MonoBehaviour {
         }
         else if (baseOwner == Player.P2)
         {
-            //Player 2 paneli implemnt edilmedi 
-            //GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
-            //GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
+            GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
+            GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
         }
     }
 

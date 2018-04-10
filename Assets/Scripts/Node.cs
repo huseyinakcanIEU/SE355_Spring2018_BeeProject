@@ -16,8 +16,8 @@ public class Node : MonoBehaviour
     public int concurrentBee_P2 = 0;
     NodeType nodeType; // enum type of node
 
-    public string nodeOwner; //string degisebilir suan bilemedim
-    public Color nodeSpriteColorOverlay; //p1 baskin ise mavi, p2 baskin ise kirmizi yap
+    public string nodeOwner = "P0"; //P0 = npc, P1 = player 1, P2 = player 2
+    //public Color nodeSpriteColorOverlay; //p1 baskin ise mavi, p2 baskin ise kirmizi yap
 
     public Text concurrentBeeText; //show number of concurrentBee --Note: you have to put Text object every node manually in editor
 
@@ -56,11 +56,7 @@ public class Node : MonoBehaviour
     {
         CalculateConcurrentBee();
         DecideNodeOwner();
-
-        if (concurrentBeeText != null)
-        {
-            concurrentBeeText.text = concurentBee.ToString(); //update concurrent bee ui (top of node)
-        }
+        UpdateConcurrentBeeText();
     }
 
     void CalculateConcurrentBee()
@@ -94,6 +90,30 @@ public class Node : MonoBehaviour
         {
             nodeOwner = "P2";
             // do other stuff
+        }
+        else if (concurrentBee_P1 == concurrentBee_P2)
+        {
+            nodeOwner = "P0";
+        }
+    }
+
+    //# of bee above node 
+    void UpdateConcurrentBeeText()
+    {
+        if (concurrentBeeText != null)
+        {
+            if (nodeOwner == "P1")
+            {
+                concurrentBeeText.text = concurrentBee_P1.ToString();
+            }
+            else if (nodeOwner == "P2")
+            {
+                concurrentBeeText.text = concurrentBee_P2.ToString();
+            }
+            else
+            {
+                concurrentBeeText.text = concurentBee.ToString();
+            }
         }
     }
 }
