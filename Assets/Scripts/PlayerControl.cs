@@ -41,7 +41,6 @@ public class PlayerControl : MonoBehaviour {
                         {
                             if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
                             {
-                                
                                 if (targetObject != null)
                                 {
                                     //P1 base is sending P1 or P0 node
@@ -129,50 +128,84 @@ public class PlayerControl : MonoBehaviour {
                         {
                             if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
                             {
-                                //P1 is sending P1
-                                if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P1")
+                                if (targetObject != null)
                                 {
-                                    initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                }
-                                //P1 is sending P2
-                                else if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P2")
-                                {
-                                    initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P1++;
-
-                                    if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                                    //P1 base is sending P1 or P0 node
+                                    if (targetObject.GetComponent<Node>().nodeOwner == "P1" || targetObject.GetComponent<Node>().nodeOwner == "P0")
                                     {
-                                        targetObject.GetComponent<Node>().concurrentBee_P2--;
+                                        initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+                                        if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P2--;
+                                        }
+                                        else
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P1++;
+                                        }
+
+                                        Debug.Log("Transferred Worker Bee: " + initialObject.name + "-->" + targetObject.name);
+                                    }
+                                    //P1 base is sending P2 node
+                                    else if (targetObject.GetComponent<Node>().nodeOwner == "P2")
+                                    {
+                                        initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+
+                                        if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P2--;
+                                        }
+                                        else
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P1++;
+                                        }
+
+                                        Debug.Log("Transferred Worker Bee: " + initialObject.name + "-->" + targetObject.name);
                                     }
                                 }
                             }
                             else if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
                             {
-                                //P2 is sending P1
-                                if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P1")
+                                if (targetObject != null)
                                 {
-                                    initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P2++;
-                                    if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                                    //P2 is sending P1
+                                    if (targetObject.GetComponent<Node>().nodeOwner == "P1")
                                     {
-                                        targetObject.GetComponent<Node>().concurrentBee_P1--;
+                                        initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+
+                                        if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P1--;
+                                        }
+                                        else
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P2++;
+                                        }
+
+                                        Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
+                                    }
+                                    //P2 is sending P2 or P0
+                                    else if (targetObject.GetComponent<Node>().nodeOwner == "P2" || targetObject.GetComponent<Node>().nodeOwner == "P0")
+                                    {
+                                        initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
+
+                                        if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P1--;
+                                        }
+                                        else
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P2++;
+                                        }
+
+                                        Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
                                     }
                                 }
-                                //P2 is sending P2
-                                else if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P2")
-                                {
-                                    initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P2++;
-                                }
                             }
-                            Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
                         }
                         else
                         {
                             Debug.Log("Not enough worker in ->> " + initialObject.name);
                         }
-
                     }
                 }
             }
