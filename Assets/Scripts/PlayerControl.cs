@@ -223,44 +223,65 @@ public class PlayerControl : MonoBehaviour {
                             //P1 is sender
                             if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
                             {
-                                //P1 is sending to P1
-                                if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P1")
+                                //P1 is sending to P1 or  P0
+                                if (targetObject != null)
                                 {
-                                    initialObject.GetComponent<Node>().concurrentBee_P1--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                }
-                                //P1 is sending to P2
-                                else if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P2")
-                                {
-                                    initialObject.GetComponent<Node>().concurrentBee_P1--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                    if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                                    if (targetObject.GetComponent<Node>().nodeOwner == "P1" || targetObject.GetComponent<Node>().nodeOwner == "P0" || targetObject.GetComponent<Node>().nodeOwner == "P2")
                                     {
-                                        targetObject.GetComponent<Node>().concurrentBee_P2--;
+                                        initialObject.GetComponent<Node>().concurrentBee_P1--;
+
+                                        if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P2--;
+                                        }
+                                        else
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P1++;
+                                        }
+
+                                        Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
                                     }
+                                    ////P1 is sending to P2
+                                    //else if (targetObject.GetComponent<Node>().nodeOwner == "P2")
+                                    //{
+                                    //    initialObject.GetComponent<Node>().concurrentBee_P1--;
+
+                                    //    if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
+                                    //    {
+                                    //        targetObject.GetComponent<Node>().concurrentBee_P2--;
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        targetObject.GetComponent<Node>().concurrentBee_P1++;
+                                    //    }
+
+                                    //    Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
+                                    //}
                                 }
                             }
                             //P2 is sender
                             else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
                             {
                                 //P2 is sending to P1
-                                if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P1")
+                                if (targetObject != null)
                                 {
-                                    initialObject.GetComponent<Node>().concurrentBee_P2--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P2++;
-                                    if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                                    if (targetObject.GetComponent<Node>().nodeOwner == "P1" || targetObject.GetComponent<Node>().nodeOwner == "P0" || targetObject.GetComponent<Node>().nodeOwner == "P2")
                                     {
-                                        targetObject.GetComponent<Node>().concurrentBee_P1--;
-                                    }
-                                }
-                                //P2 is sending to P2
-                                else if (targetObject != null && targetObject.GetComponent<Node>().nodeOwner == "P2")
-                                {
-                                    initialObject.GetComponent<Node>().concurrentBee_P2--;
-                                    targetObject.GetComponent<Node>().concurrentBee_P2++;
+                                        initialObject.GetComponent<Node>().concurrentBee_P2--;
+                                       
+                                        if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P1--;
+                                        }
+                                        else
+                                        {
+                                            targetObject.GetComponent<Node>().concurrentBee_P2++;
+                                        }
+
+                                        Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
+                                    }  
                                 }
                             }
-                            Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
                         }
                         else
                         {
