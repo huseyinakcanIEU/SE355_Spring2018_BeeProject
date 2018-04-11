@@ -49,14 +49,12 @@ public class GUIManager : MonoBehaviour
 	{
 		Debug.Log ("Option Button called");
 		optpanel.gameObject.SetActive (true);
-
 	}
 
 	public void OptionDoneButton()
 	{
 		Debug.Log ("Option Done Button called");
 		optpanel.gameObject.SetActive (false);
-
 	}
 
 	public void MusicButton()
