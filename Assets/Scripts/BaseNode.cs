@@ -26,12 +26,13 @@ public class BaseNode : MonoBehaviour {
 
     private List<Transform> spawnPositions = new List<Transform>(); //bee spawn positions (you cant create empty transform! use vector3)
 
-    public int concurrentSoldierBee = 0; //base de kac tane soldıer arı var
-    public int concurrentWorkerBee = 0; //base node kac tane worker var
-    public int concurrentBee = 0; //toplamda kac tane ari base uzerinde bekliyor
+    public int concurrentSoldierBee; //base de kac tane soldıer arı var
+    public int concurrentWorkerBee; //base node kac tane worker var
+    public int concurrentBee ; //toplamda kac tane ari base uzerinde bekliyor
 
     private string concurrentSoldierBeeText;
     private string concurrentWorkerBeeText;
+    private string resourceText;
 
     //encapsulation baseowner
     public Player BaseOwner
@@ -76,6 +77,10 @@ public class BaseNode : MonoBehaviour {
 
         //set max bee quota
         _maxBeeQuota = GameManager.Instance.maxBeeQuota;
+        
+        //set start bee numbers
+        concurrentSoldierBee = 5;
+        concurrentWorkerBee = 5;
 
     }
 
@@ -100,17 +105,21 @@ public class BaseNode : MonoBehaviour {
         concurrentBee = concurrentSoldierBee + concurrentWorkerBee;
         concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
         concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
+        resourceText = "Resource: " + currentBaseResource;
 
-        //update base concurrentBee panel(base uzerindeki Soldier:0 Worker:0 yazan panel)
+        //update base concurrentBee panel(base uzerindeki Soldier:0 Worker:0 yazan panel) ( Resource u da güncelliyoruz.) 
         if (baseOwner == Player.P1)
         {
             GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
             GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
+            GUIManager.Instance.baseNodeResourcePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = resourceText;
+            
         }
         else if (baseOwner == Player.P2)
         {
             GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
             GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
+            GUIManager.Instance.baseNodeResourcePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = resourceText;
         }
     }
 

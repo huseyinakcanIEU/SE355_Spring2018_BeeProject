@@ -121,7 +121,7 @@ public class PlayerControl : MonoBehaviour {
                     }
 
                 }
-                //if target node resource point
+                //if target node resource point  
                 else if (targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource)
                 {
                     if (Time.time > nextTransferTime)
@@ -131,39 +131,17 @@ public class PlayerControl : MonoBehaviour {
                         {
                             if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
                             {
+                                // Resourceda workerlar savaşmıyor. Direk +1 olarak yazıyoruz
                                 if (targetObject != null)
                                 {
-                                    //P1 base is sending P1 or P0 node
-                                    if (targetObject.GetComponent<Node>().nodeOwner == "P1" || targetObject.GetComponent<Node>().nodeOwner == "P0")
-                                    {
                                         initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                        if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P2--;
-                                        }
-                                        else
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                        }
+                                        
+                                         targetObject.GetComponent<Node>().concurrentBee_P1++;
+                                        
 
                                         Debug.Log("Transferred Worker Bee: " + initialObject.name + "-->" + targetObject.name);
-                                    }
-                                    //P1 base is sending P2 node
-                                    else if (targetObject.GetComponent<Node>().nodeOwner == "P2")
-                                    {
-                                        initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-
-                                        if (targetObject.GetComponent<Node>().concurrentBee_P2 > 0)
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P2--;
-                                        }
-                                        else
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                        }
-
-                                        Debug.Log("Transferred Worker Bee: " + initialObject.name + "-->" + targetObject.name);
-                                    }
+                                    
+                                    
                                 }
                             }
                             else if (initialObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
@@ -171,37 +149,17 @@ public class PlayerControl : MonoBehaviour {
                                 if (targetObject != null)
                                 {
                                     //P2 is sending P1
-                                    if (targetObject.GetComponent<Node>().nodeOwner == "P1")
-                                    {
+                                    
+                                    
                                         initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
 
-                                        if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P1--;
-                                        }
-                                        else
-                                        {
+                                       
                                             targetObject.GetComponent<Node>().concurrentBee_P2++;
-                                        }
+                                        
 
                                         Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
-                                    }
-                                    //P2 is sending P2 or P0
-                                    else if (targetObject.GetComponent<Node>().nodeOwner == "P2" || targetObject.GetComponent<Node>().nodeOwner == "P0")
-                                    {
-                                        initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-
-                                        if (targetObject.GetComponent<Node>().concurrentBee_P1 > 0)
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P1--;
-                                        }
-                                        else
-                                        {
-                                            targetObject.GetComponent<Node>().concurrentBee_P2++;
-                                        }
-
-                                        Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
-                                    }
+                                    
+                                   
                                 }
                             }
                         }
@@ -219,8 +177,8 @@ public class PlayerControl : MonoBehaviour {
                 if (Time.time > nextTransferTime)
                 {
                     nextTransferTime = Time.time + transferInterval;
-                    //resource to resource point | control to control point check. Example: Dont send soldier to resource point
-                    if (initialObject.GetComponent<Node>().NodeType1 == targetObject.GetComponent<Node>().NodeType1)
+                    // control to control point check. Example: Dont send soldier to resource point
+                    if (initialObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control && targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Control)
                     {
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
@@ -271,11 +229,26 @@ public class PlayerControl : MonoBehaviour {
                                 }
                             }
                         }
+                        
+                        
                         else
                         {
                             Debug.Log("Not enough Bee in ->> " + initialObject.name);
                         }
                     }
+                    // Resource to Resource
+                    else if (initialObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource && targetObject.GetComponent<Node>().NodeType1 == Node.NodeType.Resource)
+                    {
+
+                        if (initialObject.GetComponent<Node>().concurentBee > 0)
+                        {
+                            // Resource kimseye ait olmadığı için ve Resource getirileri aynı olduğu için Resourcetan Resource'a worker bee gönderimi yok.
+                            
+                        }
+
+                    }
+                    
+                    
                     else
                     {
                         Debug.Log("Node type didnt match! " + initialObject.name + " != " + targetObject.name);
@@ -344,40 +317,7 @@ public class PlayerControl : MonoBehaviour {
                         nextTransferTime = Time.time + transferInterval;
                         if (initialObject.GetComponent<Node>().concurentBee > 0)
                         {
-                            //P1 sending bee to a base
-                            if (initialObject.GetComponent<Node>().nodeOwner == "P1" && initialObject.GetComponent<Node>().concurrentBee_P1 > 0)
-                            {
-                                initialObject.GetComponent<Node>().concurrentBee_P1--;
-                                //P1 fallback to own base
-                                if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
-                                {
-                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
-                                }
-                                //P1 Attack to P2 base
-                                else if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
-                                {
-                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                }
-
-                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
-                            }
-                            //P2 sending bee to a base
-                            else if (initialObject.GetComponent<Node>().nodeOwner == "P2" && initialObject.GetComponent<Node>().concurrentBee_P2 > 0)
-                            {
-                                initialObject.GetComponent<Node>().concurrentBee_P2--;
-                                //P2 attack to P1 base
-                                if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P1)
-                                {
-                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee--;
-                                }
-                                //P2 fallback to own base
-                                else if (targetObject.GetComponent<BaseNode>().BaseOwner == BaseNode.Player.P2)
-                                {
-                                    targetObject.GetComponent<BaseNode>().concurrentWorkerBee++;
-                                }
-
-                                Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
-                            }
+                            //Resourcelar tarafsız bölge olduğu için ve işçi arıların base'e gönderilmesinin kullanıcıya bir şey sağlamıcağı için gönderim yok.
                         }
                         else
                         {

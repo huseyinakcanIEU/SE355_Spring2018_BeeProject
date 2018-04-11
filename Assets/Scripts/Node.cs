@@ -13,13 +13,19 @@ public class Node : MonoBehaviour
     public int concurentBee = 0; //how many bees in this node?
     public int concurrentBee_P1 = 0; //how many bees Player1 have
     public int concurrentBee_P2 = 0; // how many bees Player2 have
+    public int concurrentBee_P0 = 0; // how many bees Default enemy have
     NodeType nodeType; // enum type of node
+    public int resourcePerBee; // Resource için her arı başına taşınacak resource
+
+    private float nextTransferTime;
+    public int transferInterval = 1; //Sending resource rate(each second)
 
     public string nodeOwner = "P0"; //P0 = No owner(NPC or server), P1 = player 1, P2 = player 2
     
     //public Color nodeSpriteColorOverlay; //p1 baskin ise mavi, p2 baskin ise kirmizi yap
 
     public Text concurrentBeeText; //show number of concurrentBee --Note: you have to put Text object every node manually in editor
+    
 
     //encapsulation
     public NodeType NodeType1
@@ -47,6 +53,8 @@ public class Node : MonoBehaviour
         if (gameObject.CompareTag("ResourceNode"))
         {
             NodeType1 = NodeType.Resource;
+            resourcePerBee = 5;
+
         }
         else if (gameObject.CompareTag("ControlNode"))
         {
@@ -59,44 +67,71 @@ public class Node : MonoBehaviour
         CalculateConcurrentBee();
         DecideNodeOwner();
         UpdateConcurrentBeeText();
+     // Increasing Base Resource according to number of worker bee in resource
+        if (Time.time > nextTransferTime)
+        {
+            nextTransferTime = Time.time + transferInterval;
+
+            if (nodeType == NodeType.Resource)
+            {
+                GameObject.Find("Base1").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P1;
+                GameObject.Find("Base2").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P2;
+
+
+            }
+            
+        }
     }
 
     //Calculate concurrentBee of node and set text color to owner(P1 = blue/cyan P2 = red)
     void CalculateConcurrentBee()
     {
-        if (concurrentBee_P1 > concurrentBee_P2)
-        {
-            concurentBee = concurrentBee_P1 - concurrentBee_P2;
-            concurrentBeeText.color = Color.cyan;
+        
+        if(nodeType == NodeType.Control){
+        
+            if (concurrentBee_P1 > concurrentBee_P2)
+            {
+                concurentBee = concurrentBee_P1 - concurrentBee_P2;
+                concurrentBeeText.color = Color.cyan;
+            }
+            else if (concurrentBee_P2 > concurrentBee_P1)
+            {
+                concurentBee = concurrentBee_P2 - concurrentBee_P1;
+                concurrentBeeText.color = Color.red;
+            }
+            else if (concurrentBee_P1 == 0 && concurrentBee_P2 == 0)
+            {
+                concurentBee = 0;
+                concurrentBeeText.color = Color.black;
+            }
+    
         }
-        else if (concurrentBee_P2 > concurrentBee_P1)
+        // Resource ise concurrent bee iki kullanıcının worker toplamı kadar
+        else
         {
-            concurentBee = concurrentBee_P2 - concurrentBee_P1;
-            concurrentBeeText.color = Color.red;
+            concurentBee = concurrentBee_P1 + concurrentBee_P2;
         }
-        else if (concurrentBee_P1 == 0 && concurrentBee_P2 == 0)
-        {
-            concurentBee = 0;
-            concurrentBeeText.color = Color.black;
-        }
-
     }
 
     void DecideNodeOwner()
     {
-        if (concurrentBee_P1 > concurrentBee_P2)
-        {
-            nodeOwner = "P1";
-            //do other stuff
-        }
-        else if (concurrentBee_P2 > concurrentBee_P1)
-        {
-            nodeOwner = "P2";
-            // do other stuff
-        }
-        else if (concurrentBee_P1 == concurrentBee_P2)
-        {
-            nodeOwner = "P0"; //Non
+        // Control noktasıysa node sahibini belirle.
+        if(nodeType == NodeType.Control){
+            
+            if (concurrentBee_P1 > concurrentBee_P2)
+            {
+                nodeOwner = "P1";
+                //do other stuff
+            }
+            else if (concurrentBee_P2 > concurrentBee_P1)
+            {
+                nodeOwner = "P2";
+                // do other stuff
+            }
+            else if (concurrentBee_P1 == concurrentBee_P2)
+            {
+                nodeOwner = "P0"; //Non
+            }
         }
     }
 
@@ -105,18 +140,34 @@ public class Node : MonoBehaviour
     {
         if (concurrentBeeText != null)
         {
-            if (nodeOwner == "P1")
-            {
-                concurrentBeeText.text = concurrentBee_P1.ToString();
+            // Control noktasıysa belirle.
+            if(nodeType == NodeType.Control){
+                if (nodeOwner == "P1")
+                {
+                    concurrentBeeText.text = concurrentBee_P1.ToString();
+                }
+                else if (nodeOwner == "P2")
+                {
+                    concurrentBeeText.text = concurrentBee_P2.ToString();
+                }
+                else
+                {
+                    concurrentBeeText.text = concurentBee.ToString(); //Shows black 0 text
+                }
             }
-            else if (nodeOwner == "P2")
-            {
-                concurrentBeeText.text = concurrentBee_P2.ToString();
-            }
+            //Resource ise solda P1in sağda P2nin worker sayılarını göster. 
             else
             {
-                concurrentBeeText.text = concurentBee.ToString(); //Shows black 0 text
+               
+                concurrentBeeText.text = concurrentBee_P1 + "  " + concurrentBee_P2;
+                concurrentBeeText.color = Color.black;
             }
         }
     }
+
+
+   
+
+            
+        
 }

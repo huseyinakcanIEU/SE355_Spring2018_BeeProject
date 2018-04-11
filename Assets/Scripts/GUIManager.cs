@@ -36,6 +36,8 @@ public class GUIManager : MonoBehaviour
 
     public GameObject baseNodeConcurrentBeePanel_P1;
     public GameObject baseNodeConcurrentBeePanel_P2;
+	public GameObject baseNodeResourcePanel_P1;
+	public GameObject baseNodeResourcePanel_P2;
 
 
     void Awake()
