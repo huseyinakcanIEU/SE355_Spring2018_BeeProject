@@ -41,7 +41,7 @@ public class TestCallerScript : MonoBehaviour
 
 	public void ConfirmationButtonCaller()
 	{
-		GUIManager.Instance.ConfirmationButton ();
+		GUIManager.Instance.ConfirmButton ();
 	}
 
 	public void AlternativeButtonCaller()
