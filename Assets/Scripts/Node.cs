@@ -53,7 +53,8 @@ public class Node : MonoBehaviour
         if (gameObject.CompareTag("ResourceNode"))
         {
             NodeType1 = NodeType.Resource;
-            resourcePerBee = 5;
+            //For every node its different so change it in inspector 
+            //resourcePerBee = 5;
 
         }
         else if (gameObject.CompareTag("ControlNode"))
