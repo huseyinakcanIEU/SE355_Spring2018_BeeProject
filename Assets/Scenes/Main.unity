@@ -1394,6 +1394,21 @@ Prefab:
       propertyPath: m_TagString
       value: ControlNode
       objectReference: {fileID: 0}
+    - target: {fileID: 212930058091472278, guid: 178296f0703d1bf4981375eeac9a02a6,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212930058091472278, guid: 178296f0703d1bf4981375eeac9a02a6,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212930058091472278, guid: 178296f0703d1bf4981375eeac9a02a6,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 114217116981837894, guid: 178296f0703d1bf4981375eeac9a02a6, type: 2}
