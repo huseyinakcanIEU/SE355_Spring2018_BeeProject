@@ -94,7 +94,7 @@ public class Node : MonoBehaviour
             {
                 concurentBee = concurrentBee_P1 - concurrentBee_P2;
                 concurrentBeeText.color = Color.cyan;
-                Debug.Log("Here");
+                //Debug.Log("Here");
                 GetComponent<SpriteRenderer>().color = new Color(0,1f,1f,0.5f);
             }
             else if (concurrentBee_P2 > concurrentBee_P1)
