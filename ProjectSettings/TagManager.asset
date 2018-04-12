@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - BaseP2
-  - UIManager
-  - BeePoolPlayer2
-  - BeePoolPlayer1
-  - Resource
-  - ControlNode
-  - ResourceNode
-  - BaseP1
-  - BeeSpawnPos
-  - Timer
+  tags: []
   layers:
   - Default
   - TransparentFX
