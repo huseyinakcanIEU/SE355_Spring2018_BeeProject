@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81e1718f-ee65-4447-88c3-8c7ca4c0aaf1" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SE355_Spring2018_BeeProject/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.SE355_Spring2018_BeeProject/.idea/contentModel.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SE355_Spring2018_BeeProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.SE355_Spring2018_BeeProject/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Control Point.prefab" afterPath="$PROJECT_DIR$/Assets/Prefabs/Control Point.prefab" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Resource.prefab" afterPath="$PROJECT_DIR$/Assets/Prefabs/Resource.prefab" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Node.cs" afterPath="$PROJECT_DIR$/Assets/Scripts/Node.cs" />
-    </list>
+    <list default="true" id="81e1718f-ee65-4447-88c3-8c7ca4c0aaf1" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +11,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Node.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Node.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Node.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="398">
@@ -91,12 +84,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerManager.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlayerManager.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-26">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1523370164000" expanded="false" signature="6:78" ph="..." />
+                <marker date="1523370164000" expanded="true" signature="122:1294" ph="{...}" />
+                <marker date="1523370164000" expanded="true" signature="627:978" ph="{...}" />
+                <marker date="1523370164000" expanded="true" signature="1005:1055" ph="{...}" />
+                <marker date="1523370164000" expanded="true" signature="1127:1291" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -151,7 +150,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="709" />
@@ -238,12 +237,12 @@
       <option name="presentableId" value="Default" />
       <updated>1523389038050</updated>
       <workItem from="1523389070258" duration="13193000" />
-      <workItem from="1523521997891" duration="875000" />
+      <workItem from="1523521997891" duration="1002000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14068000" />
+    <option name="totallyTimeSpent" value="14195000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -255,7 +254,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="709" extended-state="1" />
+    <frame x="0" y="23" width="1280" height="709" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -319,7 +318,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1523370164000" expanded="false" signature="6:78" ph="..." />
+            <marker date="1523370164000" expanded="true" signature="122:1294" ph="{...}" />
+            <marker date="1523370164000" expanded="true" signature="627:978" ph="{...}" />
+            <marker date="1523370164000" expanded="true" signature="1005:1055" ph="{...}" />
+            <marker date="1523370164000" expanded="true" signature="1127:1291" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -440,14 +445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/BaseNode.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3825">
@@ -493,6 +490,20 @@
             <marker date="1523522864548" expanded="true" signature="4845:4955" ph="{...}" />
             <marker date="1523522864548" expanded="true" signature="4976:5103" ph="{...}" />
             <marker date="1523522864548" expanded="true" signature="5211:5395" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/PlayerManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-26">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1523370164000" expanded="false" signature="6:78" ph="..." />
+            <marker date="1523370164000" expanded="true" signature="122:1294" ph="{...}" />
+            <marker date="1523370164000" expanded="true" signature="627:978" ph="{...}" />
+            <marker date="1523370164000" expanded="true" signature="1005:1055" ph="{...}" />
+            <marker date="1523370164000" expanded="true" signature="1127:1291" ph="{...}" />
           </folding>
         </state>
       </provider>
