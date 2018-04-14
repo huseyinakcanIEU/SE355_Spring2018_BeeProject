@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 212381004142359316}
   - component: {fileID: 114304210653937680}
   - component: {fileID: 58674471579379936}
+  - component: {fileID: 114553938642360410}
   m_Layer: 0
   m_Name: Base1
   m_TagString: BaseP1
@@ -155,13 +156,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c630ce602beb3458af90aa0f1165a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiManager: {fileID: 0}
   healthOfBase: 0
   currentBaseResource: 0
   soldierBeePrefab: {fileID: 1243973270604106, guid: 52a6bfeadc33ac445862cfd570c01b4c,
     type: 2}
   workerBeePrefab: {fileID: 1493148751270236, guid: 6bc881003140f2445a03b0f306beacca,
     type: 2}
+  concurrentSoldierBee: 0
+  concurrentWorkerBee: 0
+  concurrentBee: 0
+--- !u!114 &114553938642360410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1152665894458366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e62f0f8ee28a648a3957ff1cd308b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edgeList: []
 --- !u!212 &212381004142359316
 SpriteRenderer:
   m_ObjectHideFlags: 1
