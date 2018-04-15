@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+    <e p="C:\Users\mustafa\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_SE355_Spring2018_BeeProject.621870225.00" t="ExcludeRecursive" />
+    <e p="C:\Users\mustafa\Documents\GitHub\SE355_Spring2018_BeeProject" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -14,12 +15,16 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BaseNode.cs" t="Include" />
+          <e p="Edge.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="GraphManager.cs" t="Include" />
           <e p="GUIManager.cs" t="Include" />
           <e p="Node.cs" t="Include" />
           <e p="PlayerControl.cs" t="Include" />
           <e p="PlayerManager.cs" t="Include" />
           <e p="TestCallerScript.cs" t="Include" />
+          <e p="Timer.cs" t="Include" />
+          <e p="Vertex.cs" t="Include" />
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
@@ -30,6 +35,5 @@
         <e p="bin" t="ExcludeRecursive" />
       </e>
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2017.3/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_SE355_Spring2018_BeeProject.992318604.00" t="ExcludeRecursive" />
   </component>
 </project>

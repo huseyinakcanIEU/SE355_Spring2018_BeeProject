@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212311654029915908}
   - component: {fileID: 61162230791506988}
   - component: {fileID: 114003110442290946}
+  - component: {fileID: 114116994959119434}
   m_Layer: 0
   m_Name: Resource
   m_TagString: Resource
@@ -86,6 +87,18 @@ MonoBehaviour:
   transferInterval: 1
   nodeOwner: 
   concurrentBeeText: {fileID: 0}
+--- !u!114 &114116994959119434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401314688350264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e62f0f8ee28a648a3957ff1cd308b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edgeList: []
 --- !u!212 &212311654029915908
 SpriteRenderer:
   m_ObjectHideFlags: 1
