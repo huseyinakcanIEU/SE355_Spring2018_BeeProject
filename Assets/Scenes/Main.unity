@@ -2743,6 +2743,8 @@ MonoBehaviour:
   soldierBeeQuotaCost: 2
   workerBeeQuotaCost: 1
   maxBeeQuota: 100
+  soldierBeeStartValue: 3
+  workerBeeStartValue: 3
 --- !u!4 &968324772
 Transform:
   m_ObjectHideFlags: 0

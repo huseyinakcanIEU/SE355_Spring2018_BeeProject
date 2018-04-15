@@ -39,4 +39,8 @@ public class GameManager : MonoBehaviour
 
     public int maxBeeQuota;
 
+    //Base node kac Bee ile baslayacak?
+    public int soldierBeeStartValue;
+    public int workerBeeStartValue;
+
 }

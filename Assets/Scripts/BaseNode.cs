@@ -23,6 +23,8 @@ public class BaseNode : MonoBehaviour {
     private int _soldierBeeQuotaCost;
     private int _workerBeeQuotaCost;
     private int _maxBeeQuota;
+    private int _soldierBeeStartValue;
+    private int _workerBeeStartValue;
 
     private List<Transform> spawnPositions = new List<Transform>(); //bee spawn positions (you cant create empty transform! use vector3)
 
@@ -74,13 +76,15 @@ public class BaseNode : MonoBehaviour {
         _workerBeeResourceCost = GameManager.Instance.workerBeeResourceCost;
         _soldierBeeQuotaCost = GameManager.Instance.soldierBeeQuotaCost;
         _workerBeeQuotaCost = GameManager.Instance.workerBeeQuotaCost;
+        _soldierBeeStartValue = GameManager.Instance.soldierBeeStartValue;
+        _workerBeeStartValue = GameManager.Instance.workerBeeStartValue;
 
         //set max bee quota
         _maxBeeQuota = GameManager.Instance.maxBeeQuota;
         
         //set start bee numbers
-        concurrentSoldierBee = 5;
-        concurrentWorkerBee = 5;
+        concurrentSoldierBee = _soldierBeeStartValue;
+        concurrentWorkerBee = _workerBeeStartValue;
 
     }
 
