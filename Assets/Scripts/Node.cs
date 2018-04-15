@@ -121,15 +121,20 @@ public class Node : NetworkBehaviour
             {
                 nodeOwner = "P1";
                 //do other stuff
+                //Need to add a owner to the vertex class also. Get the node owner from node script and set the node
+                //owner of vertex. I do this because I want to write the algorithm with one script only.
+                GetComponent<Vertex>().nodeOwner = 1;
             }
             else if (concurrentBee_P2 > concurrentBee_P1)
             {
                 nodeOwner = "P2";
                 // do other stuff
+                GetComponent<Vertex>().nodeOwner = 2;
             }
             else if (concurrentBee_P1 == concurrentBee_P2)
             {
                 nodeOwner = "P0"; //Non
+                GetComponent<Vertex>().nodeOwner = 0;
             }
         }
     }

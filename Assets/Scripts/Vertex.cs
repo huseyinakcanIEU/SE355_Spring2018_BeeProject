@@ -9,6 +9,9 @@ public class Vertex : MonoBehaviour {
 	//Vertex will contain an edgelist and a method to make the connections.
 	public List<Edge> edgeList = new List<Edge>();
 	
+	//Int to get the owners.
+	public int nodeOwner = 0;
+	
 	//Method to add the edges.
 	public void AddEdge(int weight, Vertex vertex)
 	{
@@ -20,15 +23,3 @@ public class Vertex : MonoBehaviour {
 
 }
 
-/*public class Edge
-{
-	private int weight = 0;
-	private Vertex vertex;
-	
-	public Edge(int weight,Vertex vertex)
-	{
-		Debug.Log("Edge creation.");
-		this.weight = weight;
-		this.vertex = vertex;
-	}
-}*/
