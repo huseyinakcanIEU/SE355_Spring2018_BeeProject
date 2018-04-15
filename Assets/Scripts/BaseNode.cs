@@ -17,7 +17,7 @@ public class BaseNode : MonoBehaviour {
     public GameObject soldierBeePrefab;
     public GameObject workerBeePrefab;
 
-    //costs and quotas
+    //costs and quotas(do not edit these values, use GameManager)
     private int _soldierBeeResourceCost;
     private int _workerBeeResourceCost;
     private int _soldierBeeQuotaCost;
@@ -71,7 +71,7 @@ public class BaseNode : MonoBehaviour {
             baseOwner = Player.P2;
         }
 
-        //set Costs
+        //set Costs & start values
         _soldierBeeResourceCost = GameManager.Instance.soldierBeeResourceCost;
         _workerBeeResourceCost = GameManager.Instance.workerBeeResourceCost;
         _soldierBeeQuotaCost = GameManager.Instance.soldierBeeQuotaCost;
