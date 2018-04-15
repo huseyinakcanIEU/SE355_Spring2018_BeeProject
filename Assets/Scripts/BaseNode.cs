@@ -136,7 +136,8 @@ public class BaseNode : NetworkBehaviour
         }
     }
 
-    public void CreateSoldierBee()
+    [ClientRpc]
+    public void RpcCreateSoldierBee()
     {
         //Base'in sahibi player 1 ise
         if (baseOwner == Player.P1)
@@ -200,7 +201,8 @@ public class BaseNode : NetworkBehaviour
 
     }
 
-    public void CreateWorkerBee()
+    [ClientRpc]
+    public void RpcCreateWorkerBee()
     {
        if (baseOwner == Player.P1)
         {
