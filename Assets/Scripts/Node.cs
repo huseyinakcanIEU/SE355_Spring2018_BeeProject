@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 //Eksik Ozellikler->
 //-->>kontrol noktalarinda orumcek mi kus mu ne sakat bir sey varmis
 //-->>oyunucun ari buradaysa (worker yani) kaynak uretim baz miktari arttir.(buff gibi) (aslinda isciler base'e git gel yaptikca daha mantikli olur,  varsa gonullu yapsin)
 
 
-public class Node : MonoBehaviour
+public class Node : NetworkBehaviour
 {
+    [SyncVar]
     public int concurentBee = 0; //how many bees in this node?
+    [SyncVar]
     public int concurrentBee_P1 = 0; //how many bees Player1 have
+    [SyncVar]
     public int concurrentBee_P2 = 0; // how many bees Player2 have
+    [SyncVar]
     public int concurrentBee_P0 = 0; // how many bees Default enemy have
     NodeType nodeType; // enum type of node
     public int resourcePerBee; // Resource için her arı başına taşınacak resource
@@ -20,10 +25,10 @@ public class Node : MonoBehaviour
     private float nextTransferTime;
     public int transferInterval = 1; //Sending resource rate(each second)
 
+    [SyncVar]
     public string nodeOwner = "P0"; //P0 = No owner(NPC or server), P1 = player 1, P2 = player 2
-    
-    //public Color nodeSpriteColorOverlay; //p1 baskin ise mavi, p2 baskin ise kirmizi yap
 
+    //[SyncVar]
     public Text concurrentBeeText; //show number of concurrentBee --Note: you have to put Text object every node manually in editor
     
 
@@ -68,20 +73,7 @@ public class Node : MonoBehaviour
         CalculateConcurrentBee();
         DecideNodeOwner();
         UpdateConcurrentBeeText();
-     // Increasing Base Resource according to number of worker bee in resource
-        if (Time.time > nextTransferTime)
-        {
-            nextTransferTime = Time.time + transferInterval;
-
-            if (nodeType == NodeType.Resource)
-            {
-                GameObject.Find("Base1").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P1;
-                GameObject.Find("Base2").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P2;
-
-
-            }
-            
-        }
+        GatherResourceWithWorker(); //Increase resouce gain by # of workers in this node
     }
 
     //Calculate concurrentBee of node and set text color to owner(P1 = blue/cyan P2 = red)
@@ -172,9 +164,18 @@ public class Node : MonoBehaviour
         }
     }
 
+    // Increasing Base Resource according to number of worker bee in resource
+    void GatherResourceWithWorker()
+    {
+        if (Time.time > nextTransferTime)
+        {
+            nextTransferTime = Time.time + transferInterval;
 
-   
-
-            
-        
+            if (nodeType == NodeType.Resource)
+            {
+                GameObject.Find("Base1").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P1;
+                GameObject.Find("Base2").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P2;
+            }
+        }
+    }   
 }

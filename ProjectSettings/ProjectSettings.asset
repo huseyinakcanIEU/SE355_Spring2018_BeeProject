@@ -633,9 +633,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 6ae5fb84-434a-4ac9-99b6-ad67facb1ce5
+  cloudProjectId: b608ee5e-bfba-4d9b-9a6d-a7db926ea59d
   projectName: Bee Game GUI
-  organizationId: ozcnsimge
+  organizationId: arda-zeytin
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

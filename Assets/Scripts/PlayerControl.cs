@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerControl : MonoBehaviour {
-
-    private GameObject bee;
+public class PlayerControl : NetworkBehaviour
+{
+    //private GameObject bee;
 
     public bool isFirstClick = false;
     public int transferInterval = 1; //Sending bee rate(each second)
@@ -16,6 +17,11 @@ public class PlayerControl : MonoBehaviour {
 
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         Swipe(); //click & drag & drop (mouse)
         underMouseObject = OnTargetOver(); //update what is under cursor
         TransferBee();
@@ -332,6 +338,7 @@ public class PlayerControl : MonoBehaviour {
 
     public void Swipe()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             //save began touch 2d point

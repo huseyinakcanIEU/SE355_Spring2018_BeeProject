@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     //[HideInInspector]
     public GameObject base_P1;
@@ -10,11 +11,15 @@ public class PlayerManager : MonoBehaviour
     public GameObject base_P2;
     
     //How many resources players have
+    [SyncVar]
     public int resource_P1 = 0;
+    [SyncVar]
     public int resource_P2 = 0;
 
     //How many bees players have
+    [SyncVar]
     public int concurrentBee_P1 = 0;
+    [SyncVar]
     public int concurrentBee_P2 = 0;
 
     //Parent gameobject to hold instatiated bees (can be useable for search quary)
