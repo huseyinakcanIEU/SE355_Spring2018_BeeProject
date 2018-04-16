@@ -771,9 +771,7 @@ MonoBehaviour:
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs:
-  - {fileID: 1745475734045468, guid: dc23dbdf5fcb01a4f9319bf76055c2bf, type: 2}
-  - {fileID: 1203280113251246, guid: a654b02d0521b65449cdc54c25cdf5e1, type: 2}
+  m_SpawnPrefabs: []
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -2354,9 +2352,10 @@ Prefab:
     - target: {fileID: 114554324289878876, guid: dc23dbdf5fcb01a4f9319bf76055c2bf,
         type: 2}
       propertyPath: m_LocalPlayerAuthority
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114554324289878876, guid: dc23dbdf5fcb01a4f9319bf76055c2bf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: dc23dbdf5fcb01a4f9319bf76055c2bf, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &851085539
@@ -2551,7 +2550,6 @@ GameObject:
   m_Component:
   - component: {fileID: 968324772}
   - component: {fileID: 968324771}
-  - component: {fileID: 968324773}
   - component: {fileID: 968324774}
   m_Layer: 0
   m_Name: GameManagger
@@ -2582,6 +2580,8 @@ MonoBehaviour:
   resource_P2: 0
   concurrentBee_P1: 0
   concurrentBee_P2: 0
+  base_P1: {fileID: 0}
+  base_P2: {fileID: 0}
 --- !u!4 &968324772
 Transform:
   m_ObjectHideFlags: 0
@@ -2595,19 +2595,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &968324773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 968324770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2251e178ddc65742a076ed280660555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  base_P1: {fileID: 0}
-  base_P2: {fileID: 0}
 --- !u!114 &968324774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4755,7 +4742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1879708836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5231,9 +5218,10 @@ Prefab:
     - target: {fileID: 114470256779603182, guid: a654b02d0521b65449cdc54c25cdf5e1,
         type: 2}
       propertyPath: m_LocalPlayerAuthority
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114470256779603182, guid: a654b02d0521b65449cdc54c25cdf5e1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a654b02d0521b65449cdc54c25cdf5e1, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1985373995

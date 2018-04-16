@@ -26,7 +26,12 @@ public class GameManager : NetworkBehaviour
 
     private void Awake()
     {
-        _instance = this; //singleton
+        //singleton
+        _instance = this; 
+
+        //find player base nodes
+        base_P1 = GameObject.FindGameObjectWithTag("BaseP1");
+        base_P2 = GameObject.FindGameObjectWithTag("BaseP2");
     }
 
     #endregion
@@ -54,6 +59,10 @@ public class GameManager : NetworkBehaviour
     [SyncVar]
     public int concurrentBee_P2 = 0;
 
+    [Header("Base Nodes")]
+
+    public GameObject base_P1;
+    public GameObject base_P2;
 
     private void Start()
     {
