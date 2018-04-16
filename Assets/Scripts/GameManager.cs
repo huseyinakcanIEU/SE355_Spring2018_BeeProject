@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+public class NetworkSetup : NetworkManager
+{
+    private void OnConnectedToServer()
+    {
+        
+    }
+}
+
 public class GameManager : NetworkBehaviour
 {
 
@@ -63,6 +71,11 @@ public class GameManager : NetworkBehaviour
 
     public GameObject base_P1;
     public GameObject base_P2;
+
+    [Header("Network")]
+
+    public int playerCount = 0;
+    public List<GameObject> playerList;
 
     private void Start()
     {
