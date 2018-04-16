@@ -11,20 +11,11 @@ public class PlayerManager : NetworkBehaviour
     public GameObject base_P2;
     
     //How many resources players have
-    [SyncVar]
-    public int resource_P1 = 0;
-    [SyncVar]
-    public int resource_P2 = 0;
-
-    //How many bees players have
-    [SyncVar]
-    public int concurrentBee_P1 = 0;
-    [SyncVar]
-    public int concurrentBee_P2 = 0;
+    
 
     //Parent gameobject to hold instatiated bees (can be useable for search quary)
-    public GameObject beePool_P1;
-    public GameObject beePool_P2;
+    //public GameObject beePool_P1;
+    //public GameObject beePool_P2;
 
     private void Awake()
     {
@@ -33,8 +24,8 @@ public class PlayerManager : NetworkBehaviour
         base_P2 = GameObject.FindGameObjectWithTag("BaseP2");
 
         //init bee pools
-        beePool_P1 = GameObject.FindGameObjectWithTag("BeePoolPlayer1");
-        beePool_P2 = GameObject.FindGameObjectWithTag("BeePoolPlayer2");
+        //beePool_P1 = GameObject.FindGameObjectWithTag("BeePoolPlayer1");
+        //beePool_P2 = GameObject.FindGameObjectWithTag("BeePoolPlayer2");
     }
 
     private void Update()
@@ -45,8 +36,8 @@ public class PlayerManager : NetworkBehaviour
     //get player resource values
     void UpdatePlayerResourceValues()
     {
-        resource_P1 = base_P1.GetComponent<BaseNode>().currentBaseResource;
-        resource_P2 = base_P2.GetComponent<BaseNode>().currentBaseResource;
+        //resource_P1 = base_P1.GetComponent<BaseNode>().currentBaseResource;
+        //resource_P2 = base_P2.GetComponent<BaseNode>().currentBaseResource;
     }
 
 }

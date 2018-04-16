@@ -15,6 +15,7 @@ public class PlayerControl : NetworkBehaviour
     public GameObject initialObject; //first selected object
     public GameObject targetObject; //second selected object
 
+    [ClientCallback]
     void Update()
     {
         if (!isLocalPlayer)
@@ -24,6 +25,12 @@ public class PlayerControl : NetworkBehaviour
 
         Swipe(); //click & drag & drop (mouse)
         underMouseObject = OnTargetOver(); //update what is under cursor
+        CmdTransferBee();
+    }
+
+    [Command]
+    private void CmdTransferBee()
+    {
         RpcTransferBee();
     }
 
