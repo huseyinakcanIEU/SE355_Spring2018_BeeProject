@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/BeeGameGUI.unity
+    path: Assets/Scenes/Main.unity
+    guid: f9f79390d55639b40bba0ace86d8a987
+  - enabled: 0
+    path: Assets/Scenes/BeeGameGUI.unity
     guid: 1b17a6bc273da477282d12820ce54755
