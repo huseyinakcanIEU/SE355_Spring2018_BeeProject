@@ -7,9 +7,6 @@ public class GUIManager : MonoBehaviour
 {
 
 	public GameObject optpanel;
-	public GameObject panelWarning;
-	public GameObject panelConfirm;
-	public GameObject panelAlternative;
 
 	public AudioSource music;
 
@@ -75,25 +72,19 @@ public class GUIManager : MonoBehaviour
 	public void WarningButton()
 	{
 		Debug.Log ("Warning Button called");
-		panelConfirm.gameObject.SetActive (false);
-		panelAlternative.gameObject.SetActive (false);
-		panelWarning.gameObject.SetActive (true);
+
 	}
 
 	public void ConfirmButton()
 	{
 		Debug.Log ("Confirm Button called");
-		panelWarning.gameObject.SetActive (false);
-		panelAlternative.gameObject.SetActive (false);
-		panelConfirm.gameObject.SetActive (true);
+
 	}
 
 	public void AlternativeButton()
 	{
 		Debug.Log ("Alternative Button called");
-		panelWarning.gameObject.SetActive (false);
-		panelConfirm.gameObject.SetActive (false);
-		panelAlternative.gameObject.SetActive (true);
+
 	}
 
 	void Awake()
