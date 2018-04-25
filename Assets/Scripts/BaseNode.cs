@@ -10,6 +10,11 @@ public class BaseNode : NetworkBehaviour
     
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
+    private PlayerManager playerManager; //player manager class ref
+
+    [SyncVar]
+    //public int currentBaseResource; //how many resource this base have
+
     Player baseOwner; //enum P1 P2
 
     //bee prefabs
@@ -63,12 +68,15 @@ public class BaseNode : NetworkBehaviour
 
     private void Awake()
     {
+        //set player manager ref
+        playerManager = GameManager.Instance.GetComponent<PlayerManager>();
+
         //set base owner
-        if (GameManager.Instance.base_P1 == this.gameObject)
+        if (playerManager.base_P1 == this.gameObject)
         {
             baseOwner = Player.P1;
         }
-        else if (GameManager.Instance.base_P2 == this.gameObject)
+        else if (playerManager.base_P2 == this.gameObject)
         {
             baseOwner = Player.P2;
         }
@@ -107,7 +115,6 @@ public class BaseNode : NetworkBehaviour
     {
         RpcUpdateConcurrentBeePanel();
     }
-
 
     [ClientRpc]
     private void RpcUpdateConcurrentBeePanel()
@@ -206,6 +213,8 @@ public class BaseNode : NetworkBehaviour
     {
        if (baseOwner == Player.P1)
         {
+           
+            
             if (GameManager.Instance.resource_P1 >= _workerBeeResourceCost && GameManager.Instance.concurrentBee_P1 < _maxBeeQuota)
             {
                 GameManager.Instance.resource_P1 = GameManager.Instance.resource_P1 - _workerBeeResourceCost; //decrease resource cost from total
