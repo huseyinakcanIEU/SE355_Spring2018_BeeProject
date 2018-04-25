@@ -74,17 +74,6 @@ public class GameManager : NetworkBehaviour
         InvokeRepeating("AddResources", 1, 1);
     }
 
-    public override void OnStartLocalPlayer()
-    {
-        
-    }
-
-    public override void OnStartClient()
-    {
-        playerCount = NetworkServer.connections.Count;
-        Debug.Log("A player connected! Count= " + playerCount);
-    }
-
     //standart resource gathering without using resource additional nodes
     private void AddResources()
     {
