@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 
-public class BaseNode : NetworkBehaviour
-{
+public class BaseNode : MonoBehaviour {
     public int healthOfBase; //kralice ari vs icin kullanilabilir(suan kullanilmiyor)
     
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
     private PlayerManager playerManager; //player manager class ref
-    [SyncVar]
-    public int currentBaseResource; //how many resource this base have
 
+    public int currentBaseResource; //how many resource this base have
     Player baseOwner; //enum P1 P2
 
     //bee prefabs
@@ -31,18 +28,12 @@ public class BaseNode : NetworkBehaviour
 
     private List<Transform> spawnPositions = new List<Transform>(); //bee spawn positions (you cant create empty transform! use vector3)
 
-    [SyncVar]
     public int concurrentSoldierBee; //base de kac tane soldıer arı var
-    [SyncVar]
     public int concurrentWorkerBee; //base node kac tane worker var
-    [SyncVar]
     public int concurrentBee ; //toplamda kac tane ari base uzerinde bekliyor
 
-    [SyncVar]
     private string concurrentSoldierBeeText;
-    [SyncVar]
     private string concurrentWorkerBeeText;
-    [SyncVar]
     private string resourceText;
 
     //encapsulation baseowner

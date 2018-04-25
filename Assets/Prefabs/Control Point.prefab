@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 61798996998119070}
   - component: {fileID: 114217116981837894}
   - component: {fileID: 114244020987778776}
-  - component: {fileID: 114912403308977642}
   m_Layer: 0
   m_Name: Control Point
   m_TagString: Untagged
@@ -100,38 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeList: []
---- !u!114 &114912403308977642
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1031507297711882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 23
-    i1: 130
-    i2: 150
-    i3: 240
-    i4: 112
-    i5: 61
-    i6: 27
-    i7: 244
-    i8: 152
-    i9: 19
-    i10: 117
-    i11: 238
-    i12: 172
-    i13: 154
-    i14: 2
-    i15: 166
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!212 &212930058091472278
 SpriteRenderer:
   m_ObjectHideFlags: 1

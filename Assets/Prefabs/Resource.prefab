@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 61162230791506988}
   - component: {fileID: 114003110442290946}
   - component: {fileID: 114116994959119434}
-  - component: {fileID: 114820237218398060}
   m_Layer: 0
   m_Name: Resource
   m_TagString: Resource
@@ -100,38 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeList: []
---- !u!114 &114820237218398060
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1401314688350264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 164
-    i1: 229
-    i2: 11
-    i3: 137
-    i4: 20
-    i5: 203
-    i6: 33
-    i7: 20
-    i8: 251
-    i9: 194
-    i10: 98
-    i11: 43
-    i12: 143
-    i13: 43
-    i14: 108
-    i15: 199
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!212 &212311654029915908
 SpriteRenderer:
   m_ObjectHideFlags: 1
