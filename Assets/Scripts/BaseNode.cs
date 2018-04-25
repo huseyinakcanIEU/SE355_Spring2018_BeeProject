@@ -11,9 +11,8 @@ public class BaseNode : NetworkBehaviour
     //Arda: usttekki prop.ler eski alttakiler yeni 06:43AM
 
     private PlayerManager playerManager; //player manager class ref
-
     [SyncVar]
-    //public int currentBaseResource; //how many resource this base have
+    public int currentBaseResource; //how many resource this base have
 
     Player baseOwner; //enum P1 P2
 
@@ -100,60 +99,54 @@ public class BaseNode : NetworkBehaviour
 
     void Start()
     {
+        //Increasing _honeyStock 5 per second.
+        InvokeRepeating("AddHoneyStock", 1, 1);
+
         //add all spawn pos transforms to spawnPos list(Bu iptal oldu suan kullanilmiyor)
-        //var tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
-        //foreach (var child in tempTransformOfChildren)
-        //{
-        //    if (child.CompareTag("BeeSpawnPos") == true)
-        //    {
-        //        spawnPositions.Add(child);
-        //    }
-        //}
+        var tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
+        foreach (var child in tempTransformOfChildren)
+        {
+            if (child.CompareTag("BeeSpawnPos") == true)
+            {
+                spawnPositions.Add(child);
+            }
+        }
     }
 
     void Update()
     {
-        RpcUpdateConcurrentBeePanel();
-    }
-
-    [ClientRpc]
-    private void RpcUpdateConcurrentBeePanel()
-    {
         concurrentBee = concurrentSoldierBee + concurrentWorkerBee;
         concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
         concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
-        
+        resourceText = "Resource: " + currentBaseResource;
 
         //update base concurrentBee panel(base uzerindeki Soldier:0 Worker:0 yazan panel) ( Resource u da güncelliyoruz.) 
         if (baseOwner == Player.P1)
         {
-            resourceText = "Resource: " + GameManager.Instance.resource_P1;
             GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
             GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
             GUIManager.Instance.baseNodeResourcePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = resourceText;
-
+            
         }
         else if (baseOwner == Player.P2)
         {
-            resourceText = "Resource: " + GameManager.Instance.resource_P2;
             GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
             GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
             GUIManager.Instance.baseNodeResourcePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = resourceText;
         }
     }
 
-
-    [Command]
-    public void CmdCreateSoldierBee()
+    [ClientRpc]
+    public void RpcCreateSoldierBee()
     {
         //Base'in sahibi player 1 ise
         if (baseOwner == Player.P1)
         {
             //Yeterli kaynak ve kota varsa asker uret
-            if (GameManager.Instance.resource_P1 >= _soldierBeeResourceCost && GameManager.Instance.concurrentBee_P1 < _maxBeeQuota)
+            if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P1 < _maxBeeQuota)
             {
-                GameManager.Instance.resource_P1 = GameManager.Instance.resource_P1 - _soldierBeeResourceCost; //decrease resource cost from total
-                GameManager.Instance.concurrentBee_P1 = GameManager.Instance.concurrentBee_P1 + 1; //update p1 concurrent bee
+                currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
                 concurrentSoldierBee++; //increase concurrent soldier of P1 BaseNode
                 concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee; //update P1 base panel string
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString(); //update panel text
@@ -173,15 +166,15 @@ public class BaseNode : NetworkBehaviour
             }
             else
             {
-                Debug.Log("CantCreateSoldier P1-> " + "CurrRes=" + GameManager.Instance.resource_P1 + ">" + "soldierCost= " + _soldierBeeResourceCost + "&&" + " " + "P1concurrBee= " + GameManager.Instance.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+                Debug.Log("CantCreateSoldier P1-> " + "CurrRes=" + currentBaseResource + ">" + "soldierCost= " + _soldierBeeResourceCost + "&&" + " " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
             }
         }
         else if (baseOwner == Player.P2)
         {
-            if (GameManager.Instance.resource_P2 >= _soldierBeeResourceCost && GameManager.Instance.concurrentBee_P2 < _maxBeeQuota)
+            if (currentBaseResource >= _soldierBeeResourceCost && playerManager.concurrentBee_P2 < _maxBeeQuota)
             {
-                GameManager.Instance.resource_P2 = GameManager.Instance.resource_P2 - _soldierBeeResourceCost; //decrease resource cost from total
-                GameManager.Instance.concurrentBee_P2 = GameManager.Instance.concurrentBee_P2 + 1; //update p1 concurrent bee
+                currentBaseResource = currentBaseResource - _soldierBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P2 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
                 concurrentSoldierBee++;
                 concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
@@ -198,7 +191,7 @@ public class BaseNode : NetworkBehaviour
             }
             else
             {
-                Debug.Log("CantCreateSoldier P2-> " + "CurrRes=" + GameManager.Instance.resource_P2 + ">" + "soldierCost= " + _soldierBeeResourceCost + " && " + "P1concurrBee= " + GameManager.Instance.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+                Debug.Log("CantCreateSoldier P2-> " + "CurrRes=" + currentBaseResource + ">" + "soldierCost= " + _soldierBeeResourceCost + " && " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
             }
         }
         else
@@ -208,17 +201,17 @@ public class BaseNode : NetworkBehaviour
 
     }
 
-    [Command]
-    public void CmdCreateWorkerBee()
+    [ClientRpc]
+    public void RpcCreateWorkerBee()
     {
        if (baseOwner == Player.P1)
         {
            
             
-            if (GameManager.Instance.resource_P1 >= _workerBeeResourceCost && GameManager.Instance.concurrentBee_P1 < _maxBeeQuota)
+            if (currentBaseResource >= _workerBeeResourceCost && playerManager.concurrentBee_P1 < _maxBeeQuota)
             {
-                GameManager.Instance.resource_P1 = GameManager.Instance.resource_P1 - _workerBeeResourceCost; //decrease resource cost from total
-                GameManager.Instance.concurrentBee_P1 = GameManager.Instance.concurrentBee_P1 + 1; //update p1 concurrent bee
+                currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P1 = playerManager.concurrentBee_P1 + 1; //update p1 concurrent bee
                 concurrentWorkerBee++;
                 concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
 
@@ -238,15 +231,15 @@ public class BaseNode : NetworkBehaviour
             }
             else
             {
-                Debug.Log("CantCreateWorker P1-> " + "CurrRes=" + GameManager.Instance.resource_P1 + ">" + "WorkerCost= " + _workerBeeResourceCost + "&&" + " " + "P1concurrBee= " + GameManager.Instance.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+                Debug.Log("CantCreateWorker P1-> " + "CurrRes=" + currentBaseResource + ">" + "WorkerCost= " + _workerBeeResourceCost + "&&" + " " + "P1concurrBee= " + playerManager.concurrentBee_P1 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
             }
         }
         else if (baseOwner == Player.P2)
         {
-            if (GameManager.Instance.resource_P2 >= _workerBeeResourceCost && GameManager.Instance.concurrentBee_P2 < _maxBeeQuota)
+            if (currentBaseResource >= _workerBeeResourceCost && playerManager.concurrentBee_P2 < _maxBeeQuota)
             {
-                GameManager.Instance.resource_P2 = GameManager.Instance.resource_P2 - _workerBeeResourceCost; //decrease resource cost from total
-                GameManager.Instance.concurrentBee_P2 = GameManager.Instance.concurrentBee_P2 + 1; //update p1 concurrent bee
+                currentBaseResource = currentBaseResource - _workerBeeResourceCost; //decrease resource cost from total
+                playerManager.concurrentBee_P2 = playerManager.concurrentBee_P2 + 1; //update p1 concurrent bee
                 concurrentWorkerBee++;
                 concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
@@ -262,7 +255,7 @@ public class BaseNode : NetworkBehaviour
             }
             else
             {
-                Debug.Log("CantCreateWorker P2-> " + "CurrRes=" + GameManager.Instance.resource_P2 + ">" + "workerCost= " + _workerBeeResourceCost + " && " + "P2concurrBee= " + GameManager.Instance.concurrentBee_P2 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
+                Debug.Log("CantCreateWorker P2-> " + "CurrRes=" + currentBaseResource + ">" + "workerCost= " + _workerBeeResourceCost + " && " + "P2concurrBee= " + playerManager.concurrentBee_P2 + "<" + "MaxBeeQuota= " + _maxBeeQuota);
             }
         }
         else
@@ -271,4 +264,10 @@ public class BaseNode : NetworkBehaviour
         }
     }
 
+    //standart resource gathering without using resource additional nodes
+    private void AddHoneyStock()
+    {
+        //Debug.Log("Base " + baseOwner +" resource= "+ currentBaseResource);
+        currentBaseResource += 5;
+    }
 }
