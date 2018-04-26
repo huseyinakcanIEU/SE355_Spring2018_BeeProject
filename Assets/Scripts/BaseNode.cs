@@ -63,6 +63,12 @@ public class BaseNode : NetworkBehaviour
 
     private void Awake()
     {
+        //cant get set variables from gameManager at awake anymore
+        //because there is no GameManager until game start 
+        //because of the multiplayer implementation
+    }
+    private void Start()
+    {
         //set base owner
         if (GameManager.Instance.base_P1 == this.gameObject)
         {
@@ -83,21 +89,18 @@ public class BaseNode : NetworkBehaviour
 
         //set max bee quota
         _maxBeeQuota = GameManager.Instance.maxBeeQuota;
-        
+
         //set start bee numbers
         concurrentSoldierBee = _soldierBeeStartValue;
         concurrentWorkerBee = _workerBeeStartValue;
-
     }
 
     void Update()
     {
-        RpcUpdateConcurrentBeePanel();
+        UpdateConcurrentBeePanel();
     }
-
-
-    [ClientRpc]
-    private void RpcUpdateConcurrentBeePanel()
+    
+    private void UpdateConcurrentBeePanel()
     {
         concurrentBee = concurrentSoldierBee + concurrentWorkerBee;
         concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
@@ -122,9 +125,7 @@ public class BaseNode : NetworkBehaviour
         }
     }
 
-
-    [Command]
-    public void CmdCreateSoldierBee()
+    public void CreateSoldierBee()
     {
         //Base'in sahibi player 1 ise
         if (baseOwner == Player.P1)
@@ -165,8 +166,7 @@ public class BaseNode : NetworkBehaviour
 
     }
 
-    [Command]
-    public void CmdCreateWorkerBee()
+    public void CreateWorkerBee()
     {
        if (baseOwner == Player.P1)
         {
