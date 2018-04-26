@@ -24,10 +24,11 @@ public class PlayerControl : NetworkBehaviour
 
         Swipe(); //click & drag & drop (mouse)
         underMouseObject = OnTargetOver(); //update what is under cursor
-        TransferBee();
+        RpcTransferBee();
     }
 
-    private void TransferBee()
+    [ClientRpc]
+    private void RpcTransferBee()
     {
         //ilk defa tiklandi ve ilk tiklanan uzerinde durulmuyorsa
         if (isFirstClick == true && underMouseObject != initialObject)

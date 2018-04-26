@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 114304210653937680}
   - component: {fileID: 58674471579379936}
   - component: {fileID: 114553938642360410}
+  - component: {fileID: 114950743096818120}
   m_Layer: 0
   m_Name: Base1
   m_TagString: BaseP1
@@ -177,6 +178,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeList: []
+--- !u!114 &114950743096818120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1152665894458366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 162
+    i1: 189
+    i2: 106
+    i3: 248
+    i4: 244
+    i5: 225
+    i6: 109
+    i7: 84
+    i8: 154
+    i9: 177
+    i10: 181
+    i11: 187
+    i12: 39
+    i13: 143
+    i14: 184
+    i15: 237
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!212 &212381004142359316
 SpriteRenderer:
   m_ObjectHideFlags: 1
