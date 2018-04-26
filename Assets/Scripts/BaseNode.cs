@@ -90,19 +90,6 @@ public class BaseNode : NetworkBehaviour
 
     }
 
-    void Start()
-    {
-        //add all spawn pos transforms to spawnPos list(Bu iptal oldu suan kullanilmiyor)
-        //var tempTransformOfChildren = gameObject.GetComponentsInChildren<Transform>();
-        //foreach (var child in tempTransformOfChildren)
-        //{
-        //    if (child.CompareTag("BeeSpawnPos") == true)
-        //    {
-        //        spawnPositions.Add(child);
-        //    }
-        //}
-    }
-
     void Update()
     {
         RpcUpdateConcurrentBeePanel();
@@ -150,19 +137,6 @@ public class BaseNode : NetworkBehaviour
                 concurrentSoldierBee++; //increase concurrent soldier of P1 BaseNode
                 concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee; //update P1 base panel string
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString(); //update panel text
-                
-                
-                //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
-                //GameObject tempObj = Instantiate(soldierBeePrefab,spawnPositions[0].position,Quaternion.identity); //instantiate a bee from base player 1
-
-                //tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
-                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
-
-                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                //float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
-                //spawnPositions[0].position = new Vector3(randomX,randomY,0)  ; 
-                //Debug.Log("ggg");
-                
             }
             else
             {
@@ -178,16 +152,6 @@ public class BaseNode : NetworkBehaviour
                 concurrentSoldierBee++;
                 concurrentSoldierBeeText = "Soldier: " + concurrentSoldierBee;
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(0).GetComponentInChildren<Text>().text = concurrentSoldierBeeText.ToString();
-
-
-                //GameObject tempObj = Instantiate(soldierBeePrefab, spawnPositions[0].position, Quaternion.identity); //instantiate a bee from base player 1
-                //tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
-                //Debug.Log("WALLLLLDOOOOOOOO!!");
-                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
-
-                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                //float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
-                //spawnPositions[0].position = new Vector3(randomX,randomY,0)  ; 
             }
             else
             {
@@ -212,20 +176,7 @@ public class BaseNode : NetworkBehaviour
                 GameManager.Instance.concurrentBee_P1 = GameManager.Instance.concurrentBee_P1 + 1; //update p1 concurrent bee
                 concurrentWorkerBee++;
                 concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
-
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P1.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
-
-                //spawn pos fixed listenin ilk elemani degil de duzgun bir mantik ile hangi noktada spawn edecegine karar vermeli(arilar ust uste binmesin, yazik gunah)
-                //GameObject tempObj = Instantiate(workerBeePrefab,spawnPositions[1].position,Quaternion.identity); //instantiate a bee from base player 1
-
-                //tempObj.transform.parent = playerManager.beePool_P1.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
-                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
-
-                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                //float randomY = Random.Range(transform.position.y - 0.2f, transform.position.y - 1);
-                //spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
-
-
             }
             else
             {
@@ -241,15 +192,6 @@ public class BaseNode : NetworkBehaviour
                 concurrentWorkerBee++;
                 concurrentWorkerBeeText = "Worker: " + concurrentWorkerBee;
                 GUIManager.Instance.baseNodeConcurrentBeePanel_P2.transform.GetChild(1).GetComponentInChildren<Text>().text = concurrentWorkerBeeText.ToString();
-
-                //GameObject tempObj = Instantiate(workerBeePrefab, spawnPositions[1].position, Quaternion.identity); //instantiate a bee from base player 1
-                //tempObj.transform.parent = playerManager.beePool_P2.transform; //transport this bee into pool (cumburlop, gluk gluk gluk...)
-                //Debug.Log("WALLLLLDOOOOOOOO!!");
-                // spawnPositions[0].position += new Vector3(0,0.2f,0)  ; // Arılar gönderildikten sonra sorun yaratacak.
-
-                //float randomX = Random.Range(transform.position.x -0.5f, transform.position.x + 0.5f );
-                //float randomY = Random.Range(transform.position.y + 0.2f, transform.position.y + 1);
-                //spawnPositions[1].position = new Vector3(randomX,randomY,0)  ; 
             }
             else
             {
