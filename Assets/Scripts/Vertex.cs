@@ -7,19 +7,19 @@ using UnityEngine;
 public class Vertex : MonoBehaviour {
 
 	//Vertex will contain an edgelist and a method to make the connections.
-	public List<Edge> edgeList = new List<Edge>();
+	public List<Vertex> edgeList = new List<Vertex>();
 	
 	//Int to get the owners.
 	public int nodeOwner = 0;
-	
-	//Method to add the edges.
-	public void AddEdge(int weight, Vertex vertex)
-	{
-		Edge tempEdge = new Edge(weight, vertex);
-		edgeList.Add(tempEdge);
-		Edge otherEdge = new Edge(weight, this);
-		vertex.edgeList.Add(otherEdge);
-	}
+
+    public Vertex path;
+    public bool KNOWN;
+    public int dist;
+
+	public void AddEdge(Vertex v)
+    {
+        edgeList.Add(v);
+    }
 
 }
 

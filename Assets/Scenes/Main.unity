@@ -385,6 +385,11 @@ Prefab:
       propertyPath: m_TagString
       value: ControlNode
       objectReference: {fileID: 0}
+    - target: {fileID: 114244020987778776, guid: 178296f0703d1bf4981375eeac9a02a6,
+        type: 2}
+      propertyPath: nodeOwner
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 114217116981837894, guid: 178296f0703d1bf4981375eeac9a02a6, type: 2}
@@ -2576,6 +2581,11 @@ Prefab:
       propertyPath: m_TagString
       value: ControlNode
       objectReference: {fileID: 0}
+    - target: {fileID: 114244020987778776, guid: 178296f0703d1bf4981375eeac9a02a6,
+        type: 2}
+      propertyPath: nodeOwner
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 114217116981837894, guid: 178296f0703d1bf4981375eeac9a02a6, type: 2}
@@ -3296,7 +3306,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   edgeList: []
-  nodeOwner: 0
+  nodeOwner: 2
+  path: {fileID: 0}
+  KNOWN: 0
+  dist: 0
 --- !u!58 &1099131290
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3795,6 +3808,11 @@ Prefab:
     - target: {fileID: 1031507297711882, guid: 178296f0703d1bf4981375eeac9a02a6, type: 2}
       propertyPath: m_TagString
       value: ControlNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244020987778776, guid: 178296f0703d1bf4981375eeac9a02a6,
+        type: 2}
+      propertyPath: nodeOwner
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
