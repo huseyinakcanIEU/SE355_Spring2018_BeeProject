@@ -28,7 +28,6 @@ public class Node : NetworkBehaviour
     [SyncVar]
     public string nodeOwner = "P0"; //P0 = No owner(NPC or server), P1 = player 1, P2 = player 2
 
-    //[SyncVar]
     public Text concurrentBeeText; //show number of concurrentBee --Note: you have to put Text object every node manually in editor
     
 
@@ -178,8 +177,8 @@ public class Node : NetworkBehaviour
 
             if (nodeType == NodeType.Resource)
             {
-                GameObject.Find("Base1").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P1;
-                GameObject.Find("Base2").GetComponent<BaseNode>().currentBaseResource += resourcePerBee * concurrentBee_P2;
+                GameManager.Instance.resource_P1 += resourcePerBee * concurrentBee_P1;
+                GameManager.Instance.resource_P2 += resourcePerBee * concurrentBee_P2;
             }
         }
     }   
