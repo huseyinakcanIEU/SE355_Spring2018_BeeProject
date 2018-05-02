@@ -26,6 +26,20 @@ public class PlayerControl : NetworkBehaviour
         Swipe(); //click & drag & drop (mouse)
         underMouseObject = OnTargetOver(); //update what is under cursor
         CmdTransferBee();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            CmdIncrementMyNumberRequestFromClient();
+            Debug.Log("Client: I'm Pressed to K");
+        }
+        Debug.Log("myNumber= " + GameObject.Find("SyncTestObj").GetComponent<NumberSyncTest>().myNumber);
+    }
+
+    [Command]
+    public void CmdIncrementMyNumberRequestFromClient()
+    {
+        GameObject.Find("SyncTestObj").GetComponent<NumberSyncTest>().IncrementMyNumberFromServer();
+        Debug.Log("Server: >Command from client: 'Hey server! Increase myNumber.' ");
     }
 
     [Command]

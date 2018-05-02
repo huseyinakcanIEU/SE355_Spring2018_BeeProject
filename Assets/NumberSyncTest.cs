@@ -5,32 +5,17 @@ using UnityEngine.Networking;
 
 public class NumberSyncTest : NetworkBehaviour
 {
-    [SyncVar(hook = "IncrementSyncCallBack")]
-    public int testNumber = 0;
+    [SyncVar]
+    public int myNumber = 0;
 
-
-    public void Update()
+    public void IncrementMyNumberFromServer()
     {
-        if (!isLocalPlayer)
+        if (!isServer)
         {
             return;
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            IncrementSyncCallBack(1);
-        }
-
-        Debug.Log("TestNumber " + testNumber);
+        myNumber++;
+        Debug.Log("Server: I'm incremented myNumber >>> " + myNumber);
     }
 
-    //[Command]
-    public void IncrementSyncCallBack(int newNumber)
-    {
-        if (isServer)
-        {
-            return;
-        }
-        testNumber = testNumber + newNumber;
-    }
 }

@@ -3701,12 +3701,12 @@ GameObject:
   - component: {fileID: 1310802047}
   - component: {fileID: 1310802049}
   m_Layer: 0
-  m_Name: NumberSyncTestObj
+  m_Name: SyncTestObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1310802047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3718,7 +3718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a313e1154a1c6d143adef1b39b9d0067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testNumber: 0
+  myNumber: 0
 --- !u!4 &1310802048
 Transform:
   m_ObjectHideFlags: 0
