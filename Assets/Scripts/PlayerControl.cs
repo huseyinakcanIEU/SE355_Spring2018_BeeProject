@@ -15,6 +15,9 @@ public class PlayerControl : NetworkBehaviour
     public GameObject initialObject; //first selected object
     public GameObject targetObject; //second selected object
 
+	public GraphManager graphManager;
+	public GameObject preFabric;
+
     [ClientCallback]
     void Update()
     {
@@ -85,7 +88,7 @@ public class PlayerControl : NetworkBehaviour
                                         {
                                             targetObject.GetComponent<Node>().concurrentBee_P1++;
                                         }
-
+										Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                         Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                                     }
                                     //P1 base is sending P2 node
@@ -101,7 +104,7 @@ public class PlayerControl : NetworkBehaviour
                                         {
                                             targetObject.GetComponent<Node>().concurrentBee_P1++;
                                         }
-
+										Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                         Debug.Log("Transferred Soldier Bee: " + initialObject.name + "-->" + targetObject.name);
                                     }
                                 } 
@@ -123,6 +126,8 @@ public class PlayerControl : NetworkBehaviour
                                         {
                                             targetObject.GetComponent<Node>().concurrentBee_P2++;
                                         }
+										//ss
+										Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                     }
                                     //P2 is sending P2 or P0
                                     else if (targetObject.GetComponent<Node>().nodeOwner == "P2" || targetObject.GetComponent<Node>().nodeOwner == "P0")
@@ -137,6 +142,8 @@ public class PlayerControl : NetworkBehaviour
                                         {
                                             targetObject.GetComponent<Node>().concurrentBee_P2++;
                                         }
+										//ss
+										Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                     }
                                 }
                                 
@@ -165,7 +172,7 @@ public class PlayerControl : NetworkBehaviour
                                         initialObject.GetComponent<BaseNode>().concurrentWorkerBee--;
                                         
                                          targetObject.GetComponent<Node>().concurrentBee_P1++;
-                                        
+									Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
 
                                         Debug.Log("Transferred Worker Bee: " + initialObject.name + "-->" + targetObject.name);
                                     
@@ -184,7 +191,7 @@ public class PlayerControl : NetworkBehaviour
                                        
                                             targetObject.GetComponent<Node>().concurrentBee_P2++;
                                         
-
+									Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                         Debug.Log("Transferred Worker Bee " + initialObject.name + "-->" + targetObject.name);
                                     
                                    
@@ -228,7 +235,7 @@ public class PlayerControl : NetworkBehaviour
                                         {
                                             targetObject.GetComponent<Node>().concurrentBee_P1++;
                                         }
-
+										Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                         Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
                                     }
                                 }
@@ -251,7 +258,7 @@ public class PlayerControl : NetworkBehaviour
                                         {
                                             targetObject.GetComponent<Node>().concurrentBee_P2++;
                                         }
-
+										Move (graphManager.ShortestPath(initialObject.GetComponent<Vertex>(),targetObject.GetComponent<Vertex>()));
                                         Debug.Log("Transferred Bee :" + initialObject.name + "-->" + targetObject.name);
                                     }  
                                 }
@@ -411,6 +418,11 @@ public class PlayerControl : NetworkBehaviour
         }
     }
 
+
+	void Move(List<Vertex> _path){
+		GameObject temp = Instantiate (preFabric,_path[0].gameObject.transform);
+		temp.GetComponent<BeePref>().Movement(_path);
+	}
 
     //void ClickSelect()
     //{
